@@ -1,0 +1,38 @@
+nav {
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  z-index: 1002;
+  padding: 10px;
+  align-items: center;
+  height: var(--navbar-height);
+}
+
+img {
+  display: block;
+  width: 142px;
+}
+
+.menu {
+  color: var(--menu-font-color);
+  display: flex;
+  justify-content: space-between;  
+}
+
+.menu > a {
+  display: block;
+  font-weight: 400;
+  color: white;
+  text-decoration: none;
+}
+
+.menu > a:hover {
+  filter: brightness(0.8);
+}
+
+.menu > a:not(:last-child) {
+  margin-right: 32px;
+}
