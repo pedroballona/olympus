@@ -1,0 +1,13 @@
+.front {
+  z-index: 99999;
+  width: 50%;
+  max-width: 700px;
+  min-width: 300px;
+}
+
+.logo {
+  display: block;
+  width: 70%;
+  margin: auto auto;
+  margin-bottom: 32px;
+}
