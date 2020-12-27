@@ -1,9 +1,27 @@
-
 <nav>
-  <img src="../../../assets/img/totvs-white.svg">
-  <div class="menu">
-    <a [routerLink]="''">Home</a>
-    <a [routerLink]="['courses']">Cursos</a>
+  <div class="desktop po-visible-lg po-visible-xl">
+    <div>
+      <img src="../../../assets/img/logo-white.svg" />
+      <div class="menu">
+        <a class="app-clickable" [routerLink]="''">Home</a>
+        <a class="app-clickable" [routerLink]="['courses']">Cursos</a>
+      </div>
+      <div style="width: 142px; display: flex; flex-direction: row-reverse;">
+        <span *ngIf="showSearch$ | async" class="po-icon po-icon-search app-clickable" (click)="toggleSearch()"></span>
+      </div>
+    </div>
   </div>
-  <div style="width: 142px;"></div>
+  <div class="mobile po-hidden-lg po-hidden-xl">
+    <div>
+      <div>
+        <span class="po-icon po-icon-menu"></span>
+      </div>
+      <div>
+        <img src="../../../assets/img/logo-white.svg" />
+      </div>
+      <div>
+        <span *ngIf="showSearch$ | async" class="po-icon po-icon-search app-clickable" (click)="toggleSearch()"></span>
+      </div>
+    </div>
+  </div>
 </nav>

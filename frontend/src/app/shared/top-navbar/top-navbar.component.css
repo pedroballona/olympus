@@ -1,19 +1,33 @@
-nav {
-  display: flex;
-  justify-content: space-between;
+nav { 
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   z-index: 1002;
   padding: 10px;
-  align-items: center;
   height: var(--navbar-height);
 }
 
+nav > div {
+  width: 100%;
+  height: 100%;
+}
+
+nav > div > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
 img {
-  display: block;
   width: 142px;
+}
+
+.po-icon {
+  font-size: 30px;
+  color: white;
 }
 
 .menu {
@@ -27,10 +41,6 @@ img {
   font-weight: 400;
   color: white;
   text-decoration: none;
-}
-
-.menu > a:hover {
-  filter: brightness(0.8);
 }
 
 .menu > a:not(:last-child) {

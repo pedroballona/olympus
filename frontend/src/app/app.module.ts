@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { CoursesPageComponent } from './pages/courses-page/courses-page.component';
+import { PoModule } from '@po-ui/ng-components';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { CoursesPageComponent } from './pages/courses-page/courses-page.componen
     BrowserModule,
     AppRoutingModule,
     SharedModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    PoModule
   ],
   providers: [],
   bootstrap: [AppComponent]

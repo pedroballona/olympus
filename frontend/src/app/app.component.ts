@@ -5,9 +5,10 @@ import {
   transition,
   trigger
 } from '@angular/animations';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter, map } from 'rxjs/operators';
+import { SearchToggleService } from './shared/search-toggle.service';
 
 @Component({
   selector: 'app-root',
@@ -31,15 +32,27 @@ import { filter, map } from 'rxjs/operators';
     ]),
   ],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'olympus-ui';
-  animationState$ = this.router.events.pipe(
-    filter((event) => event instanceof NavigationEnd),
-    map((event) => {
-      const castedEvent = event as NavigationEnd;
-      return castedEvent.url === '/' ? 'open' : 'closed';
-    })
-  );
+  animationState$ = this.searchService.searchVisibility$.pipe(map(shouldShow => shouldShow ? 'open' : 'closed'));
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private searchService: SearchToggleService
+  ) {}
+
+  ngOnInit(): void {
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe((event) => {
+        const castedEvent = event as NavigationEnd;
+        if (castedEvent.url === '/') {
+          this.searchService.setSearchDisabled(true);
+          this.searchService.showSearch();
+        } else {
+          this.searchService.setSearchDisabled(false);
+          this.searchService.hideSearch();
+        }
+      });
+  }
 }
