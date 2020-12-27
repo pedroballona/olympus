@@ -11,3 +11,21 @@
   margin: auto auto;
   margin-bottom: 32px;
 }
+
+.wrapper {
+  top: var(--navbar-height);
+  position: relative;
+  height: calc(100vh - var(--navbar-height));
+  overflow: hidden;
+}
+
+.content {
+  background-color: white;
+  height: calc(100vh - var(--navbar-height));
+  position: absolute;
+  width: 100vw;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 5;
+  overflow: auto;
+}

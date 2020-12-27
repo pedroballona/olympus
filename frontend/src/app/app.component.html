@@ -1,21 +1,12 @@
 <app-top-navbar></app-top-navbar>
 <app-background-slideshow></app-background-slideshow>
-<div style="top: var(--navbar-height); position: relative; height: calc(100vh - var(--navbar-height)); overflow: hidden;">
+<div class="wrapper">
   <section class="app-center front">
     <img class="logo" src="../../../assets/img/logo-white.svg" />
     <app-search-bar></app-search-bar>
   </section>
   <div
-    style="
-      background-color: white;
-      height: calc(100vh - var(--navbar-height));
-      position: absolute;
-      width: 100vw;
-      margin-left: auto;
-      margin-right: auto;
-      z-index: 999999;
-      overflow: auto;
-    "
+    class="content"
     [@openClose]="animationState$ | async"
   >
     <router-outlet></router-outlet>

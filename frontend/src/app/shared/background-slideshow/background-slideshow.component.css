@@ -57,7 +57,7 @@
   animation: imageAnimation 36s linear infinite 0s;
 }
 .cb-slideshow li div {
-  z-index: 1000;
+  z-index: 4;
   position: absolute;
   bottom: 30px;
   left: 0px;

@@ -1,9 +1,9 @@
-nav { 
+nav {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
-  z-index: 1002;
+  z-index: 4;
   padding: 10px;
   height: var(--navbar-height);
 }
@@ -33,7 +33,7 @@ img {
 .menu {
   color: var(--menu-font-color);
   display: flex;
-  justify-content: space-between;  
+  justify-content: space-between;
 }
 
 .menu > a {
@@ -45,4 +45,10 @@ img {
 
 .menu > a:not(:last-child) {
   margin-right: 32px;
+}
+
+.right-desktop-content {
+  width: 142px;
+  display: flex;
+  flex-direction: row-reverse;
 }
