@@ -1,5 +1,35 @@
-input {
+.wrapper {
   border-radius: 40px;
-  padding: 20px;
+  padding: 15px;
   width: 100%;
+  background-color: white;
+  position: relative;
+  display: flex;
+  align-items: center;
 }
+
+.wrapper > input {
+  border: 0;
+  flex: 1;
+  font-size: 14px;
+}
+
+.po-icon-search {
+  font-size: 20px;
+}
+
+@media only screen and (min-width: 961px) {
+  .wrapper > input {
+    font-size: 20px;
+  }
+
+  .wrapper {
+    padding: 20px;
+  }
+
+  .po-icon-search {
+    font-size: 30px;
+  }
+}
+
+
