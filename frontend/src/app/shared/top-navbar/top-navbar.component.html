@@ -3,8 +3,8 @@
     <div>
       <img class="app-clickable" src="../../../assets/img/logo-white.svg" [routerLink]="'/'"/>
       <div class="menu">
-        <a class="app-clickable" [routerLink]="''">Home</a>
-        <a class="app-clickable" [routerLink]="['courses']">Cursos</a>
+        <a class="app-clickable" [routerLink]="''">{{'l-home' | translate}}</a>
+        <a class="app-clickable" [routerLink]="['courses']">{{'l-courses' | translate}}</a>
       </div>
       <div class="right-desktop-content">
         <span *ngIf="showSearch$ | async" class="po-icon po-icon-search app-clickable" (click)="toggleSearch()"></span>
@@ -14,12 +14,12 @@
   <div class="mobile po-hidden-lg po-hidden-xl">
     <div>
       <div>
-        <span class="po-icon po-icon-menu"></span>
+        <span class="po-icon po-icon-menu app-clickable" (click)="toggleSideBar()"></span>
       </div>
       <div>
         <img src="../../../assets/img/logo-white.svg" />
       </div>
-      <div>
+      <div style="width: 30px;">
         <span *ngIf="showSearch$ | async" class="po-icon po-icon-search app-clickable" (click)="toggleSearch()"></span>
       </div>
     </div>

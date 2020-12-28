@@ -7,6 +7,7 @@ import {
 } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { filter, map } from 'rxjs/operators';
 import { SearchToggleService } from './shared/search-toggle.service';
 
@@ -38,8 +39,12 @@ export class AppComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private searchService: SearchToggleService
-  ) {}
+    private searchService: SearchToggleService,
+    translate: TranslateService
+  ) {
+    translate.setDefaultLang('en');
+    translate.use(translate.getBrowserLang());
+  }
 
   ngOnInit(): void {
     this.router.events

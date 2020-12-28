@@ -7,9 +7,9 @@
 
 .logo {
   display: block;
-  width: 70%;
+  width: 80%;
   margin: auto auto;
-  margin-bottom: 32px;
+  margin-bottom: 20px;
 }
 
 .wrapper {
@@ -28,4 +28,24 @@
   margin-right: auto;
   z-index: 5;
   overflow: auto;
+}
+
+.content-with-margin {
+  width: 100%;
+  max-width: 1340px;
+  margin-left: auto;
+  margin-right: auto;
+  min-height: 100%;
+  padding: 10px;
+}
+
+@media only screen and (min-width: 961px) {
+  .logo {
+    width: 70%;
+    margin-bottom: 32px;
+  }
+
+  .content-with-margin {
+    padding: 20px;
+  }
 }

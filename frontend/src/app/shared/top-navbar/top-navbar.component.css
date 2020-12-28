@@ -4,7 +4,7 @@ nav {
   left: 0;
   width: 100vw;
   z-index: 4;
-  padding: 10px;
+  padding: 10px 20px;
   height: var(--navbar-height);
 }
 

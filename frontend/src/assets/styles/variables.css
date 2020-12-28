@@ -2,4 +2,5 @@
   --default-font-family: 'Montserrat', sans-serif;
   --menu-font-color: white;
   --navbar-height: 70px;
+  --text-color: var(--color-neutral-dark-60);
 }
