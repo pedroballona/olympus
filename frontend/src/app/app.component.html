@@ -1,11 +1,12 @@
 <app-top-navbar></app-top-navbar>
 <app-background-slideshow></app-background-slideshow>
 <app-side-bar></app-side-bar>
+<section class="app-center front">
+  <img class="logo" src="../../../assets/img/logo-white.svg" />
+  <app-search-bar></app-search-bar>
+</section>
 <div class="wrapper">
-  <section class="app-center front">
-    <img class="logo" src="../../../assets/img/logo-white.svg" />
-    <app-search-bar></app-search-bar>
-  </section>
+  
   <div
     class="content"
     [@openClose]="animationState$ | async"
