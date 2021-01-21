@@ -9,7 +9,7 @@ namespace Totvs.Olympus.API.Controllers
 {
   [ApiController]
   [ApiVersion("1.0")]
-  [Route("[controller]")]
+  [Route("api/v{version:apiVersion}/[controller]")]
   public class WeatherForecastController : ControllerBase
   {
     private static readonly string[] Summaries = new[]
@@ -25,6 +25,7 @@ namespace Totvs.Olympus.API.Controllers
     }
 
     [HttpGet]
+    [MapToApiVersion("1.0")]
     public IEnumerable<WeatherForecast> Get()
     {
       var rng = new Random();
