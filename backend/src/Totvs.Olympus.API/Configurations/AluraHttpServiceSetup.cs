@@ -23,6 +23,7 @@ namespace Totvs.Olympus.API.Configurations
                AddPolicyHandler(PolicyHandler.Timeout());
 
       services.AddScoped<IAluraHttpService, AluraHttpService>();
+      services.AddScoped<IGetAllCoursesFromAluraService, GetAllCoursesFromAluraService>();
 
       return services;
     }

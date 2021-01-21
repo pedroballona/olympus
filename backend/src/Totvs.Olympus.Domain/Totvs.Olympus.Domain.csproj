@@ -4,4 +4,8 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Totvs.Olympus.CrossCutting\Totvs.Olympus.CrossCutting.csproj" />
+  </ItemGroup>
+
 </Project>
