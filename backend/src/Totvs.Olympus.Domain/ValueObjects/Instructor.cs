@@ -15,6 +15,13 @@ namespace Totvs.Olympus.Domain.ValueObjects
       Name = name;
     }
 
+    public Instructor(string name, IList<string> expertise)
+    {
+      Id = Guid.NewGuid();
+      Name = name;
+      Expertise = expertise;
+    }
+
     public IEnumerable<string> AddNewExpertise(string expertise)
     {
       this.Expertise.Add(expertise);

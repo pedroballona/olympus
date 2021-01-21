@@ -19,7 +19,7 @@ namespace Totvs.Olympus.API.Configurations
       services.Configure<OlympusDatabaseSettings>(configuration.GetSection("ConnectionStrings:MongoDB"));
       services.AddSingleton<IOlympusDatabaseSettings>(sp => sp.GetRequiredService<IOptions<OlympusDatabaseSettings>>().Value);
 
-      services.AddScoped<ICourseService, CourseService>();
+      services.AddScoped<ICourseMongoService, CourseMongoService>();
 
       return services;
     }
