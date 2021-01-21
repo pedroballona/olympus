@@ -1,7 +1,9 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  Input
+  EventEmitter,
+  Input,
+  Output
 } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -18,6 +20,7 @@ export class CourseCardComponent {
   @Input() set course(value: SimpleCourse) {
     this.courseSubject.next(value);
   }
+  @Output() detailsClicked = new EventEmitter<void>();
   private courseSubject = new ReplaySubject<SimpleCourse>(1);
   mouseOverImage = false;
 

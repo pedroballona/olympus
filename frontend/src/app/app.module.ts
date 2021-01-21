@@ -10,6 +10,7 @@ import { CourseListComponent } from './pages/courses-page/components/course-list
 import { CoursesPageComponent } from './pages/courses-page/courses-page.component';
 import { SharedModule } from './shared/shared.module';
 import { AppTranslationLoader } from './shared/translation-loader/translation-loader';
+import { CourseDetailModalComponent } from './pages/courses-page/components/course-detail-modal/course-detail-modal.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { AppTranslationLoader } from './shared/translation-loader/translation-lo
     AppComponent,
     CoursesPageComponent,
     CourseCardComponent,
-    CourseListComponent
+    CourseListComponent,
+    CourseDetailModalComponent
   ],
   imports: [
     BrowserModule,
@@ -33,6 +35,7 @@ import { AppTranslationLoader } from './shared/translation-loader/translation-lo
     PoWidgetModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [CourseDetailModalComponent]
 })
 export class AppModule { }

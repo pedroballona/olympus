@@ -8,6 +8,8 @@ import { BackgroundSlideshowComponent } from './background-slideshow/background-
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { TopNavbarComponent } from './top-navbar/top-navbar.component';
+import { TotvsLoaderGlobalComponent } from './totvs-loader/totvs-loader-global/totvs-loader-global.component';
+import { TotvsLoaderComponent } from './totvs-loader/totvs-loader.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +17,8 @@ import { TopNavbarComponent } from './top-navbar/top-navbar.component';
     TopNavbarComponent,
     BackgroundSlideshowComponent,
     SideBarComponent,
+    TotvsLoaderComponent,
+    TotvsLoaderGlobalComponent
   ],
   imports: [
     CommonModule,
@@ -28,6 +32,8 @@ import { TopNavbarComponent } from './top-navbar/top-navbar.component';
     TopNavbarComponent,
     BackgroundSlideshowComponent,
     SideBarComponent,
+    TotvsLoaderComponent,
+    TotvsLoaderGlobalComponent
   ],
 })
 export class SharedModule {}

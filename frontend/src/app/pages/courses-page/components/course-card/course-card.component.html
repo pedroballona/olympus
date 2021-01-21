@@ -1,5 +1,9 @@
-<po-widget *ngIf="course$ | async as course" 
-[p-primary-label]="'Detalhes'">
+<po-widget
+  *ngIf="course$ | async as course"
+  [p-primary-label]="'l-start-course' | translate"
+  [p-secondary-label]="'l-details' | translate"
+  (p-secondary-action)="detailsClicked.emit()"
+>
   <div class="container">
     <div
       class="image-container po-mb-2"
