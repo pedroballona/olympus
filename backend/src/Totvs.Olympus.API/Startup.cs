@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Totvs.Olympus.API.Configurations;
+using Totvs.Olympus.API.Infrastructure;
 
 namespace Totvs.Olympus.API
 {
@@ -36,8 +37,10 @@ namespace Totvs.Olympus.API
         p.GroupNameFormat = "'v'VVV";
         p.SubstituteApiVersionInUrl = true;
       });
-      services.AddAutoSwaggerSetup(this.Configuration);
+      services.AddAutoSwaggerSetup(this.Configuration).
+               AddAutoMapperSetup();
       services.SetupAluraService(this.Configuration);
+      services.AddRepositories();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
