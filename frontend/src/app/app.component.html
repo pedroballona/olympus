@@ -8,11 +8,12 @@
 <div class="wrapper">
   
   <div
-    class="content"
-    [@openClose]="animationState$ | async"
+  class="content"
+  [@openClose]="animationState$ | async"
   >
-    <div class="content-with-margin">
-      <router-outlet></router-outlet>
-    </div>
+  <div class="content-with-margin">
+    <router-outlet></router-outlet>
   </div>
 </div>
+</div>
+<app-totvs-loader-global></app-totvs-loader-global>

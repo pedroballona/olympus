@@ -9,6 +9,10 @@
   transform: translate(-50%, -50%);
 }
 
+.app-relative {
+  position: relative;
+}
+
 .app-clickable {
   transition: 100ms filter linear;
   cursor: pointer;
