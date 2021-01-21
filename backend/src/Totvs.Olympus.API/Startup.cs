@@ -40,6 +40,7 @@ namespace Totvs.Olympus.API
       services.AddAutoSwaggerSetup(this.Configuration).
                AddAutoMapperSetup();
       services.SetupAluraService(this.Configuration);
+      services.SetupMongoDatabase(this.Configuration);
       services.AddRepositories();
     }
 
