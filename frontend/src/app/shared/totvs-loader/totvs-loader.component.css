@@ -1,0 +1,107 @@
+.logo-container {
+  padding-top: 22%;
+}
+.top {
+  z-index: 99888;
+}
+.back {
+  z-index: 999;
+}
+.loading-overlay {
+  background-color: white;
+  opacity: 0.6;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.logo {
+  width: 75%;
+  height: 75%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.front {
+  background-image: url('/assets/img/totvs-loader/totvs-icon-front.svg');
+  z-index: 99;
+  opacity: 0.8;
+}
+.bg-1 {
+  background-image: url('/assets/img/totvs-loader/totvs-icon-bg-1.svg');
+  z-index: 97;
+  opacity: 0.8;
+}
+.bg-2 {
+  background-image: url('/assets/img/totvs-loader/totvs-icon-bg-2.svg');
+  z-index: 98;
+  opacity: 0.8;
+}
+.center {
+  position: absolute;
+  margin: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+@keyframes pulse {
+  0%,
+  31%,
+  62%,
+  100% {
+    width: 75%;
+    height: 75%;
+  }
+  23%,
+  54% {
+    width: 90%;
+    height: 90%;
+  }
+}
+.pulse {
+  animation-duration: 1.52s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+.pulse.normal {
+  animation-name: pulse;
+}
+@keyframes pulse-left {
+  0%,
+  31%,
+  62%,
+  100% {
+    width: 75%;
+    height: 75%;
+    transform: translate(-50%, -50%);
+  }
+  23%,
+  54% {
+    width: 90%;
+    height: 90%;
+    transform: translate(-51.5%, -50%);
+  }
+}
+.pulse.left {
+  animation-name: pulse-left;
+}
+@keyframes pulse-right {
+  0%,
+  31%,
+  62%,
+  100% {
+    width: 75%;
+    height: 75%;
+    transform: translate(-50%, -50%);
+  }
+  23%,
+  54% {
+    width: 90%;
+    height: 90%;
+    transform: translate(-49%, -50%);
+  }
+}
+.pulse.right {
+  animation-name: pulse-right;
+}
