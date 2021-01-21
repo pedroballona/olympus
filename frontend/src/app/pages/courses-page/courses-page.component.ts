@@ -1,5 +1,4 @@
 import {
-  ChangeDetectionStrategy,
   Component,
   OnDestroy,
   OnInit
@@ -13,7 +12,6 @@ import { CoursesPageStateService } from './couses-page-state.service';
   selector: 'app-courses-page',
   templateUrl: './courses-page.component.html',
   styleUrls: ['./courses-page.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [CoursesPageStateService],
 })
 export class CoursesPageComponent implements OnInit, OnDestroy {

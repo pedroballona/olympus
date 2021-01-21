@@ -1,3 +1,13 @@
-<po-modal *ngIf="course" [p-title]="course.title">
-
+<po-modal *ngIf="course" [p-title]="course.title" [p-size]="'lg'">
+  <h3 class="po-mb-2">Instrutores</h3>
+  <div class="po-mb-2">
+    <div class="instructor" *ngFor="let instructor of course.instructorsNames">
+      <div class="po-pr-1">
+        <po-avatar [p-src]="instructor | instructorImage" > </po-avatar>
+      </div>
+      <p class="instructor-name">{{instructor}}</p>
+    </div>
+  </div>
+  <h3 class="po-mb-2">Descrição</h3>
+  <p class="description">{{ course.description }}</p>
 </po-modal>

@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { PoModalComponent } from '@po-ui/ng-components';
-import { SimpleCourseWithImage as SimpleCourse } from '../../../../models/course.model';
+import { Course } from '../../../../models/course.model';
 import { assert } from '../../../../shared/assert';
 
 @Component({
@@ -9,19 +9,20 @@ import { assert } from '../../../../shared/assert';
   styleUrls: ['./course-detail-modal.component.css']
 })
 export class CourseDetailModalComponent implements OnInit {
-  course: SimpleCourse | null = null;
+  course: Course | null = null;
 
   @ViewChild(PoModalComponent)
   modal: PoModalComponent | undefined;
 
-  constructor() { }
+  constructor(private changeDetectorRef: ChangeDetectorRef) { }
 
   ngOnInit(): void {
   }
 
-  open(course: SimpleCourse): void {
-    assert(this.modal);
+  open(course: Course): void {
     this.course = course;
+    this.changeDetectorRef.detectChanges();
+    assert(this.modal);
     this.modal.open();
   }
 

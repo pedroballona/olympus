@@ -1,6 +1,6 @@
 <div style="display: flex; flex-wrap: wrap; gap: 30px; justify-content: center;">
   <div class="" *ngFor="let course of courses">
-    <app-course-card [course]="course"></app-course-card>
+    <app-course-card [course]="course" (detailsClicked)="onDetailsClicked(course)"></app-course-card>
   </div>
   <div class="po-row po-table-footer-show-more show-more" style="height: 10%">
     <po-button

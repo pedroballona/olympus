@@ -1,0 +1,17 @@
+:host ::ng-deep .po-modal-title {
+  white-space: normal !important;
+  overflow: show !important;
+}
+
+.instructor {
+  display: flex;
+  align-items: center;
+}
+
+.description {
+  text-align: justify;
+}
+
+.instructor-name {
+  font-size: 18px;
+}

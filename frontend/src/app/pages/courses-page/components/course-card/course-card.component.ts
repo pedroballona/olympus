@@ -1,5 +1,4 @@
 import {
-  ChangeDetectionStrategy,
   Component,
   EventEmitter,
   Input,
@@ -14,7 +13,6 @@ import { CourseImageService } from './course-image.service';
   selector: 'app-course-card',
   templateUrl: './course-card.component.html',
   styleUrls: ['./course-card.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CourseCardComponent {
   @Input() set course(value: SimpleCourse) {

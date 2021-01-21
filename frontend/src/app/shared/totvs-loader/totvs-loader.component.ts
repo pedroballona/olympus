@@ -1,9 +1,8 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 @Component({
   selector: 'app-totvs-loader',
   templateUrl: './totvs-loader.component.html',
   styleUrls: ['./totvs-loader.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TotvsLoaderComponent {
   @Input() width = '300px';

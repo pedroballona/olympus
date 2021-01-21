@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { SimpleCourse } from '../../models/course.model';
+import { Course, SimpleCourse } from '../../models/course.model';
 import { TotvsPage } from '../../models/totvspage.model';
 
 @Injectable({
@@ -20,5 +20,9 @@ export class CoursesService {
         },
       }
     );
+  }
+
+  getCourse(id: string): Observable<Course> {
+    return this.http.get<Course>(`${environment.backendUrl}courses/${id}`);
   }
 }

@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { PoMenuModule } from '@po-ui/ng-components';
 import { BackgroundSlideshowComponent } from './background-slideshow/background-slideshow.component';
+import { InstructorImagePipe } from './instructor-image.pipe';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { TopNavbarComponent } from './top-navbar/top-navbar.component';
@@ -18,7 +19,8 @@ import { TotvsLoaderComponent } from './totvs-loader/totvs-loader.component';
     BackgroundSlideshowComponent,
     SideBarComponent,
     TotvsLoaderComponent,
-    TotvsLoaderGlobalComponent
+    TotvsLoaderGlobalComponent,
+    InstructorImagePipe
   ],
   imports: [
     CommonModule,
@@ -33,7 +35,8 @@ import { TotvsLoaderComponent } from './totvs-loader/totvs-loader.component';
     BackgroundSlideshowComponent,
     SideBarComponent,
     TotvsLoaderComponent,
-    TotvsLoaderGlobalComponent
+    TotvsLoaderGlobalComponent,
+    InstructorImagePipe
   ],
 })
 export class SharedModule {}
