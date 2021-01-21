@@ -42,7 +42,7 @@ export class AppComponent implements OnInit {
     private searchService: SearchToggleService,
     translate: TranslateService
   ) {
-    translate.setDefaultLang('en');
+    translate.setDefaultLang('pt');
     translate.use(translate.getBrowserLang());
   }
 

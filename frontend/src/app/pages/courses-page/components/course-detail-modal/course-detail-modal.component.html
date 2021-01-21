@@ -1,0 +1,19 @@
+<po-modal
+  *ngIf="course"
+  [p-title]="course.title"
+  [p-size]="'lg'"
+  [p-primary-action]="primaryAction$ | async"
+  [p-secondary-action]="secondaryAction$ | async"
+>
+  <h3 class="po-mb-2">{{ "l-instructors" | translate }}</h3>
+  <div class="po-mb-2">
+    <div class="instructor" *ngFor="let instructor of course.instructorsNames">
+      <div class="po-pr-1">
+        <po-avatar [p-src]="instructor | instructorImage"> </po-avatar>
+      </div>
+      <p class="instructor-name">{{ instructor }}</p>
+    </div>
+  </div>
+  <h3 class="po-mb-2">Descrição</h3>
+  <p class="description">{{ course.description }}</p>
+</po-modal>
