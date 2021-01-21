@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
+using Totvs.Olympus.CrossCutting.DefaultContract;
 using Totvs.Olympus.CrossCutting.DTOs;
-using Totvs.Olympus.CrossCutting.ExternalServices.ResponsesDTO;
-using Totvs.Olympus.Domain.ExternalServices;
+using Totvs.Olympus.Domain.RepositoryContracts;
 using Totvs.Olympus.Domain.Services;
 
 namespace Totvs.Olympus.API.Controllers
@@ -13,21 +13,21 @@ namespace Totvs.Olympus.API.Controllers
   [Route("api/v{version:apiVersion}/courses")]
   public class CoursesController : ControllerBase
   {
-    private readonly IGetAllCoursesFromAluraService _service;
+    private readonly ICoursesRepository _repository;
     private readonly ICourseService _courseService;
 
-    public CoursesController(IGetAllCoursesFromAluraService service,
+    public CoursesController(ICoursesRepository repository,
                              ICourseService courseService)
     {
-      _service = service;
+      _repository = repository;
       _courseService = courseService;
     }
 
     [HttpGet]
     [MapToApiVersion("1.0")]
-    public async Task<IEnumerable<BasicCourseDataDTO>> GetAllCourses()
+    public async Task<IQueryResult<CourseDTO>> GetAllCourses([FromQuery] RequestAllOptionsDTO optionsDTO)
     {
-      var result = await _service.GetCourses();
+      var result = await _repository.GetAllPaginatedContracts(optionsDTO);
       return result;
     }
 
@@ -38,8 +38,6 @@ namespace Totvs.Olympus.API.Controllers
       CourseDTO example = new CourseDTO()
       {
         Id = "123",
-        Instructors = new List<string>() { "Otávio Olegário de Castro" },
-        Rating = 5,
         Title = "Implementing MongoDB"
       };
 
