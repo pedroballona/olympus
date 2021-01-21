@@ -25,9 +25,9 @@ namespace Totvs.Olympus.API.Controllers
 
     [HttpGet]
     [MapToApiVersion("1.0")]
-    public async Task<IQueryResult<CourseDTO>> GetAllCourses([FromQuery] RequestAllOptionsDTO optionsDTO)
+    public async Task<IQueryResult<CourseDTO>> GetAllCourses([FromQuery] string filter, [FromQuery] RequestAllOptionsDTO optionsDTO)
     {
-      var result = await _repository.GetAllPaginatedContracts(optionsDTO);
+      var result = await _repository.GetAllPaginatedContracts(filter, optionsDTO);
       return result;
     }
 
