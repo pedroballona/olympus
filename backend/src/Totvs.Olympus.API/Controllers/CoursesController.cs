@@ -25,9 +25,9 @@ namespace Totvs.Olympus.API.Controllers
 
     [HttpGet]
     [MapToApiVersion("1.0")]
-    public async Task<IQueryResult<CourseDTO>> GetAllCourses([FromQuery] RequestAllOptionsDTO optionsDTO)
+    public async Task<IQueryResult<CourseDTO>> GetAllCourses([FromQuery] string filter, [FromQuery] RequestAllOptionsDTO optionsDTO)
     {
-      var result = await _repository.GetAllPaginatedContracts(optionsDTO);
+      var result = await _repository.GetAllPaginatedContracts(filter, optionsDTO);
       return result;
     }
 
@@ -42,6 +42,15 @@ namespace Totvs.Olympus.API.Controllers
       };
 
       var result = await _courseService.CreateCourse(example);
+      return result;
+    }
+
+    [HttpGet]
+    [MapToApiVersion("1.0")]
+    [Route("{id}")]
+    public async Task<DetailCourseDTO> GetDetailCourse(string id)
+    {
+      var result = await _repository.GetDetailCourse(id);
       return result;
     }
   }

@@ -7,12 +7,14 @@ export interface CoursesPageState {
   readonly page: SimpleCourse[];
   readonly currentPage: number;
   readonly hasNext: boolean;
+  readonly isLoading: boolean;
 }
 
 const initialState: CoursesPageState = {
   page: [],
   currentPage: 1,
-  hasNext: false
+  hasNext: false,
+  isLoading: false
 };
 
 @Injectable()
@@ -27,12 +29,21 @@ export class CoursesPageStateService extends State<CoursesPageState> {
   }
 
   async getPage(pageNumber: number): Promise<void> {
-    const result = await this.coursesService.getAllCourses(pageNumber).toPromise();
     this.setState(draft => {
-      draft.page = draft.page.concat(result.items);
-      draft.hasNext = result.hasNext;
-      draft.currentPage = pageNumber;
+      draft.isLoading = true;
     });
+    try {
+      const result = await this.coursesService.getAllCourses(pageNumber).toPromise();
+      this.setState(draft => {
+        draft.page = draft.page.concat(result.items);
+        draft.hasNext = result.hasNext;
+        draft.currentPage = pageNumber;
+      });
+    } finally {
+      this.setState(draft => {
+        draft.isLoading = false;
+      });
+    }
   }
 
   async goToNextPage(): Promise<void> {
