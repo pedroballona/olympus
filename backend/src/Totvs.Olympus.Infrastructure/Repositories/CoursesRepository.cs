@@ -13,12 +13,15 @@ namespace Totvs.Olympus.Infrastructure.Repositories
   public class CoursesRepository : ICoursesRepository
   {
     private readonly IGetAllCoursesFromAluraService _getAllService;
+    private readonly IGetDetailCoursesService _getDetailCoursesService;
     private readonly IMapper _mapper;
 
-    public CoursesRepository(IGetAllCoursesFromAluraService getAllService, 
+    public CoursesRepository(IGetAllCoursesFromAluraService getAllService,
+                             IGetDetailCoursesService getDetailCoursesService,
                              IMapper mapper)
     {
       _getAllService = getAllService;
+      _getDetailCoursesService = getDetailCoursesService;
       _mapper = mapper;
     }
 
@@ -29,6 +32,13 @@ namespace Totvs.Olympus.Infrastructure.Repositories
       var mapped = _mapper.Map<IEnumerable<CourseDTO>>(result);
 
       return AutoMapperQueryble.Paginate(mapped, optionsDTO);
+    }
+
+    public async Task<DetailCourseDTO> GetDetailCourse(string courseId)
+    {
+      var result = await _getDetailCoursesService.GetDetailCourseData(courseId);
+
+      return _mapper.Map<DetailCourseDTO>(result);
     }
   }
 }
