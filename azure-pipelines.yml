@@ -1,0 +1,64 @@
+trigger: none
+resources:
+- repo: self
+  fetchDepth: 1
+variables:
+  TargetFramework: 'netcoreapp3.1'
+  RestoreBuildProjects: 'Totvs.Olympus.API/*.csproj'
+  TestProjects: '**/*Test*/*.csproj'
+  BuildConfiguration: 'Release'
+stages:
+  - stage: build
+    displayName: 'Build & Test'
+    jobs: 
+    - job: build
+      pool:
+        vmImage: 'windows-latest'
+      steps:
+
+      - task: NuGetToolInstaller@1
+        inputs:
+          versionSpec: '5.x.x'
+
+      - task: UseDotNet@2
+        displayName: "Install .NET Core"
+        inputs:
+          packageType: 'sdk'
+          version: '3.1.x'
+
+      - task: DotNetCoreCLI@2
+        displayName: Restore
+        inputs:
+          command: restore
+          projects: '$(RestoreBuildProjects)'
+          feedsToUse: config
+          nugetConfigPath: nuget.config
+
+      - task: DotNetCoreCLI@2
+        displayName: Build
+        inputs:
+          projects: '$(RestoreBuildProjects)'
+          arguments: '--configuration $(BuildConfiguration) --framework $(TargetFramework)'
+
+      - task: DotNetCoreCLI@2
+        displayName: 'Test $(BuildConfiguration)'
+        inputs:
+          command: test
+          projects: $(TestProjects)
+          arguments: '--configuration $(BuildConfiguration) --framework $(TargetFramework) /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:Exclude="[*xunit.*]*" /p:CoverletOutput=./TestResults/Coverage/'
+
+      - task: DotNetCoreCLI@2
+        displayName: Publish
+        inputs:
+          command: publish
+          publishWebProjects: True
+          arguments: '--configuration $(BuildConfiguration) --framework=$(TargetFramework)'
+          zipAfterPublish: false
+          modifyOutputPath: false
+
+      # task: PublishCodeCoverageResults@1 uses the crashed version 1.175.2
+      - task: PublishCodeCoverageResults@1.175.1
+        displayName: 'Publish Code Coverage'  
+        inputs:  
+          codeCoverageTool: Cobertura  
+          summaryFileLocation: '$(Build.SourcesDirectory)/**/TestResults/Coverage/coverage.cobertura.xml'
