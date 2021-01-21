@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  OnInit
+} from '@angular/core';
+import { Subject } from 'rxjs';
+import { distinctUntilChanged, map, takeUntil } from 'rxjs/operators';
+import { LoaderService } from '../../shared/totvs-loader/loader/loader.service';
 import { CoursesPageStateService } from './couses-page-state.service';
 
 @Component({
@@ -6,19 +14,39 @@ import { CoursesPageStateService } from './couses-page-state.service';
   templateUrl: './courses-page.component.html',
   styleUrls: ['./courses-page.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [CoursesPageStateService]
+  providers: [CoursesPageStateService],
 })
-export class CoursesPageComponent implements OnInit {
+export class CoursesPageComponent implements OnInit, OnDestroy {
   state$ = this.stateService.state$;
+  private destroySubject = new Subject<void>();
 
-  constructor(private stateService: CoursesPageStateService) { }
+  constructor(
+    private stateService: CoursesPageStateService,
+    private loaderService: LoaderService
+  ) {}
 
   async ngOnInit(): Promise<void> {
     await this.stateService.initialize();
+    this.state$
+      .pipe(
+        takeUntil(this.destroySubject),
+        map((state) => state.isLoading),
+        distinctUntilChanged()
+      )
+      .subscribe((value) => {
+        if (value) {
+          this.loaderService.show();
+        } else {
+          this.loaderService.hide();
+        }
+      });
   }
 
   onNextClicked(): Promise<void> {
     return this.stateService.goToNextPage();
   }
 
+  ngOnDestroy(): void {
+    this.destroySubject.next();
+  }
 }
