@@ -1,9 +1,9 @@
 import {
-  ChangeDetectionStrategy,
   Component,
   OnDestroy,
   OnInit
 } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 import { distinctUntilChanged, map, takeUntil } from 'rxjs/operators';
 import { LoaderService } from '../../shared/totvs-loader/loader/loader.service';
@@ -13,7 +13,6 @@ import { CoursesPageStateService } from './couses-page-state.service';
   selector: 'app-courses-page',
   templateUrl: './courses-page.component.html',
   styleUrls: ['./courses-page.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [CoursesPageStateService],
 })
 export class CoursesPageComponent implements OnInit, OnDestroy {
@@ -22,11 +21,19 @@ export class CoursesPageComponent implements OnInit, OnDestroy {
 
   constructor(
     private stateService: CoursesPageStateService,
-    private loaderService: LoaderService
+    private loaderService: LoaderService,
+    private activatedRoute: ActivatedRoute
   ) {}
 
   async ngOnInit(): Promise<void> {
-    await this.stateService.initialize();
+    this.activateLoader();
+    this.activatedRoute.queryParams.pipe(takeUntil(this.destroySubject)).subscribe(async params => {
+      const filter: string = params.filter ?? '';
+      await this.stateService.initialize(filter);
+    });
+  }
+
+  private activateLoader(): void {
     this.state$
       .pipe(
         takeUntil(this.destroySubject),
