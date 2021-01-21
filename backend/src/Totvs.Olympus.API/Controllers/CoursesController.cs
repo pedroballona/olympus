@@ -44,5 +44,14 @@ namespace Totvs.Olympus.API.Controllers
       var result = await _courseService.CreateCourse(example);
       return result;
     }
+
+    [HttpGet]
+    [MapToApiVersion("1.0")]
+    [Route("{id}")]
+    public async Task<DetailCourseDTO> GetDetailCourse(string id)
+    {
+      var result = await _repository.GetDetailCourse(id);
+      return result;
+    }
   }
 }
