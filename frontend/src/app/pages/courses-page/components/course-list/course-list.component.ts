@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { SimpleCourse } from '../../../../models/course';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { SimpleCourse } from '../../../../models/course.model';
 
 @Component({
   selector: 'app-course-list',
@@ -7,18 +7,8 @@ import { SimpleCourse } from '../../../../models/course';
   styleUrls: ['./course-list.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CourseListComponent implements OnInit {
-  courses: SimpleCourse[] = [];
-
-  constructor() { }
-
-  ngOnInit(): void {
-    for (let index = 0; index < 100; index++) {
-      this.courses.push({
-        id: index.toString(),
-        title: 'Fundamentos de Typescript ' + (index + 1)
-      });
-    }
-  }
-
+export class CourseListComponent {
+  @Input() courses: SimpleCourse[] = [];
+  @Input() hasNext = false;
+  @Output() nextClicked = new EventEmitter<void>();
 }

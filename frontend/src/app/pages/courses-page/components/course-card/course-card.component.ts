@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { SimpleCourse, SimpleCourseWithImage } from '../../../../models/course';
+import { SimpleCourse, SimpleCourseWithImage } from '../../../../models/course.model';
 import { CourseImageService } from './course-image.service';
 
 @Component({

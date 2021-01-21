@@ -1,7 +1,5 @@
-<h1>{{'l-courses' | translate}}</h1>
+<ng-container *ngIf="state$ | async as state">
+  <h1>{{ "l-courses" | translate }}</h1>
 
-<app-course-list></app-course-list>
-
-
-
-
+  <app-course-list [courses]="state.page" [hasNext]="state.hasNext" (nextClicked)="onNextClicked()"></app-course-list>
+</ng-container>

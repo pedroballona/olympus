@@ -2,4 +2,12 @@
   <div class="" *ngFor="let course of courses">
     <app-course-card [course]="course"></app-course-card>
   </div>
+  <div class="po-row po-table-footer-show-more show-more" style="height: 10%">
+    <po-button
+      *ngIf="hasNext"
+      class="po-offset-xl-3 po-offset-lg-3 po-offset-md-3 po-md-6 po-sm-12"
+      [p-label]="'l-load-more-records' | translate"
+      (p-click)="nextClicked.emit()"
+    ></po-button>
+  </div>
 </div>

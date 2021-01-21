@@ -45,5 +45,9 @@
 
 :host ::ng-deep .po-container {
   padding: 24px !important;
+  height: calc(100% - 40px) !important;
+}
+
+:host ::ng-deep .po-widget {
   height: 100% !important;
 }
