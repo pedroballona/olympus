@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using Totvs.Olympus.CrossCutting.DefaultContract;
 using Totvs.Olympus.CrossCutting.DTOs;
+using Totvs.Olympus.Domain.Entities;
 using Totvs.Olympus.Domain.RepositoryContracts;
 using Totvs.Olympus.Domain.Services;
 
@@ -14,10 +15,10 @@ namespace Totvs.Olympus.API.Controllers
   public class CoursesController : ControllerBase
   {
     private readonly ICoursesRepository _repository;
-    private readonly ICourseService _courseService;
+    private readonly ICourseMongoService _courseService;
 
     public CoursesController(ICoursesRepository repository,
-                             ICourseService courseService)
+                             ICourseMongoService courseService)
     {
       _repository = repository;
       _courseService = courseService;
@@ -33,15 +34,9 @@ namespace Totvs.Olympus.API.Controllers
 
     [HttpPost]
     [MapToApiVersion("1.0")]
-    public async Task<CourseDTO> InputCourse()
+    public async Task<Course> InputCourse([FromBody] CourseInputDTO course)
     {
-      CourseDTO example = new CourseDTO()
-      {
-        Id = "123",
-        Title = "Implementing MongoDB"
-      };
-
-      var result = await _courseService.CreateCourse(example);
+      var result = await _courseService.CreateCourse(course);
       return result;
     }
 
