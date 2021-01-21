@@ -1,7 +1,9 @@
 export interface Courses {
+  hasNext: boolean;
+  items: SimpleCourse[]
+}
+
+export interface SimpleCourse {
   id: string; 
-  name: string;
-  author: string;
-  hasSigned: string;
-  progress: string;
+  title: string;
 }
