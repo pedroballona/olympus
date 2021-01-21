@@ -3,6 +3,10 @@ import { Home } from '../page-objects/home-page.po';
 
 const home = new Home();
 
+When('a página inicial é carregada', () => {
+
+});
+
 Then('uma breve descrição do sistema é exibida', () => {
   home.getHomeDescription().should('have.string', 'OlympusUi');
 });

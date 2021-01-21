@@ -1,4 +1,3 @@
-/// <reference types="Cypress" />
 export class Home {
   getHomeDescription(): Cypress.Chainable<string> {
     return cy
