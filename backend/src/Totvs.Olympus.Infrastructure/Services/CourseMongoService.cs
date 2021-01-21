@@ -11,16 +11,13 @@ namespace Totvs.Olympus.Infrastructure.Services
   public class CourseMongoService : ICourseMongoService
   {
     private readonly IMongoCollection<Course> _courses;
-    private readonly IMapper _mapper;
 
-    public CourseMongoService(IOlympusDatabaseSettings settings, 
-                              IMapper mapper)
+    public CourseMongoService(IOlympusDatabaseSettings settings)
     {
       var client = new MongoClient(settings.ConnectionString);
       var database = client.GetDatabase(settings.DatabaseName);
 
       _courses = database.GetCollection<Course>(nameof(Course));
-      _mapper = mapper;
     }
 
     public async Task<Course> CreateCourse(CourseInputDTO course)

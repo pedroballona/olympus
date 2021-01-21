@@ -6,9 +6,8 @@ using Totvs.Olympus.Domain.ValueObjects;
 
 namespace Totvs.Olympus.Domain.Entities
 {
-  public class Course
+  public class Course : Entity
   {
-    public Guid Id { get; private set; }
     public string Name { get; private set; }
     public double Score { get; private set; }
     public IEnumerable<Instructor> Instructors { get; private set; }
@@ -19,7 +18,6 @@ namespace Totvs.Olympus.Domain.Entities
                   IEnumerable<Instructor> instructors, 
                   Uri linkExternalCourse = null)
     {
-      Id = Guid.NewGuid();
       Name = name;
       Score = note;
       Instructors = instructors;
@@ -28,7 +26,6 @@ namespace Totvs.Olympus.Domain.Entities
 
     public Course(CourseInputDTO course)
     {
-      Id = Guid.NewGuid();
       Name = course.Name;
       Score = course.Score;
       Instructors = course.Instructors.Select(x => new Instructor(x.Name, x.Expertise.ToList()));
