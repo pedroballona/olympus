@@ -1,5 +1,22 @@
-<div *ngIf="course$ | async as course">
-  <img [src]="course.imageUrl">
-  <p>{{course.title}}</p>
-  <p>{{course.instructors}}</p>
-</div>
+<po-container *ngIf="course$ | async as course">
+  <div class="container">
+    <div
+      class="image-container po-mb-2"
+      [style.background-image]="'url(' + course.imageUrl + ')'"
+    >
+      <div class="image-overlay" [class.show]="mouseOverImage"></div>
+      <div class="fas fa-play-circle app-center" *ngIf="mouseOverImage"></div>
+      <div
+        class="overlay"
+        (mouseenter)="setMouseOverImage(true)"
+        (mouseleave)="setMouseOverImage(false)"
+      ></div>
+    </div>
+    <a
+      class="title app-clickable"
+      (mouseenter)="setMouseOverImage(true)"
+      (mouseleave)="setMouseOverImage(false)"
+      >{{ course.title }}</a
+    >
+  </div>
+</po-container>

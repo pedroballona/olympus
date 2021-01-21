@@ -29,7 +29,8 @@
             ],
             "styles": [
               "node_modules/normalize.css/normalize.css",
-              "src/assets/styles/po-theme.css",
+              "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+              "node_modules/@totvs/po-theme/css/po-theme-default-variables.min.css",
               "node_modules/@po-ui/style/css/po-theme-core.min.css",
               "src/styles.css"
             ],

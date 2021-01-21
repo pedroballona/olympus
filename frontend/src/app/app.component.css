@@ -20,7 +20,7 @@
 }
 
 .content {
-  background-color: white;
+  background-color: var(--color-background);
   height: calc(100vh - var(--navbar-height));
   position: absolute;
   width: 100vw;

@@ -19,6 +19,7 @@ export class CourseCardComponent {
     this.courseSubject.next(value);
   }
   private courseSubject = new ReplaySubject<SimpleCourse>(1);
+  mouseOverImage = false;
 
   course$: Observable<SimpleCourseWithImage> = this.courseSubject.pipe(
     map((simpleCourse) => {
@@ -33,4 +34,8 @@ export class CourseCardComponent {
   );
 
   constructor(private courseImageService: CourseImageService) {}
+
+  setMouseOverImage(value: boolean): void {
+    this.mouseOverImage = value;
+  }
 }

@@ -1,0 +1,49 @@
+.image-container {
+  width: 240px;
+  height: 135px;
+  position: relative;
+}
+
+.container {
+  margin: auto;
+  width: 240px;
+}
+
+.image-overlay {
+  position: absolute;
+  background-color: black;
+  width: 240px;
+  height: 135px;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.image-overlay.show {
+  opacity: 0.4;
+}
+
+.fa-play-circle {
+  font-size: 60px;
+  color: white;
+  z-index: 1;
+}
+
+.overlay {
+  width: 240px;
+  height: 135px;
+  cursor: pointer;
+  position: absolute;
+  z-index: 2;
+}
+
+.title {
+  color: inherit;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+:host ::ng-deep .po-container {
+  padding: 24px !important;
+  height: 100% !important;
+}
