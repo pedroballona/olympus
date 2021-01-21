@@ -1,26 +1,48 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using Serilog;
+using System;
+using System.Diagnostics.CodeAnalysis;
+using System.IO;
 
 namespace Totvs.Olympus.API
 {
-    public class Program
+  public class Program
+  {
+    public static void Main(string[] args)
     {
-        public static void Main(string[] args)
-        {
-            CreateHostBuilder(args).Build().Run();
-        }
+      Console.Title = "Totvs Olympus API";
+      CreateWebHostBuilder(args).
+      ConfigureAppConfiguration((hostingContext, config) =>
+      {
+        var env = hostingContext.HostingEnvironment;
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
+        config
+            .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: false, reloadOnChange: false)
+            .AddEnvironmentVariables();
+      }).
+      ConfigureLogging((hostingContext, logging) =>
+      {
+        var loggerConfiguration = new LoggerConfiguration()
+                  .Enrich.WithMachineName()
+                  .ReadFrom.Configuration(hostingContext.Configuration);
+
+        Log.Logger = loggerConfiguration.CreateLogger();
+      })
+              .UseStartup<Startup>()
+              .UseSerilog()
+              .UseKestrel()
+              .UseContentRoot(Directory.GetCurrentDirectory())
+              .UseIISIntegration()
+              .UseSetting("detailedErrors", "true")
+              .Build()
+              .Run();
     }
+
+
+    public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+            WebHost.CreateDefaultBuilder(args)
+                .UseStartup<Startup>();
+  }
 }
