@@ -38,6 +38,7 @@ namespace Totvs.Olympus.API
       });
       services.AddAutoSwaggerSetup(this.Configuration);
       services.SetupAluraService(this.Configuration);
+      services.SetupMongoDatabase(this.Configuration);
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
