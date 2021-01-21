@@ -11,12 +11,13 @@ import { TotvsPage } from '../../models/totvspage.model';
 export class CoursesService {
   constructor(private http: HttpClient) {}
 
-  getAllCourses(page: number): Observable<TotvsPage<SimpleCourse>> {
+  getAllCourses(page: number, filter = ''): Observable<TotvsPage<SimpleCourse>> {
     return this.http.get<TotvsPage<SimpleCourse>>(
       environment.backendUrl + 'courses',
       {
         params: {
           page: page + '',
+          filter
         },
       }
     );

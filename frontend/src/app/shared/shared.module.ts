@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
@@ -28,6 +29,7 @@ import { TotvsLoaderComponent } from './totvs-loader/totvs-loader.component';
     PoMenuModule,
     BrowserAnimationsModule,
     TranslateModule.forChild(),
+    FormsModule
   ],
   exports: [
     SearchBarComponent,

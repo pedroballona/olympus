@@ -1,4 +1,10 @@
 <div class="wrapper">
-  <input type="text" [placeholder]="'l-search-your-next-course' | translate" role="searchbox"/>
-  <div class="po-icon po-icon-search app-clickable" role="button"></div>
+  <input
+    type="text"
+    [placeholder]="'l-search-your-next-course' | translate"
+    role="searchbox"
+    [(ngModel)]="filter"
+    (keydown.enter)="search()"
+  />
+  <div class="po-icon po-icon-search app-clickable" role="button" (click)="search()"></div>
 </div>

@@ -4,6 +4,7 @@ import {
   Input,
   Output
 } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Observable, ReplaySubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { SimpleCourse, SimpleCourseWithImage } from '../../../../models/course.model';
@@ -34,7 +35,7 @@ export class CourseCardComponent {
     })
   );
 
-  constructor(private courseImageService: CourseImageService) {}
+  constructor(private courseImageService: CourseImageService, private activatedRouter: ActivatedRoute) {}
 
   setMouseOverImage(value: boolean): void {
     this.mouseOverImage = value;
