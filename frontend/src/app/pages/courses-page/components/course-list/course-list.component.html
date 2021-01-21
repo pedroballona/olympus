@@ -1,6 +1,9 @@
 <div style="display: flex; flex-wrap: wrap; gap: 30px; justify-content: center;">
   <div class="" *ngFor="let course of courses">
-    <app-course-card [course]="course"></app-course-card>
+    <app-course-card [course]="course" (detailsClicked)="onDetailsClicked(course)"></app-course-card>
+  </div>
+  <div class="no-couse-found-message app-center" *ngIf="courses.length === 0">
+    <p>{{'l-no-course-found' | translate}}</p>
   </div>
   <div class="po-row po-table-footer-show-more show-more" style="height: 10%">
     <po-button
@@ -11,3 +14,4 @@
     ></po-button>
   </div>
 </div>
+<app-course-detail-modal #modal></app-course-detail-modal>

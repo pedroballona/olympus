@@ -8,17 +8,17 @@ namespace Totvs.Olympus.Domain.Entities
 {
   public class Course : Entity
   {
-    public string Name { get; private set; }
+    public string Title { get; private set; }
     public double Score { get; private set; }
     public IEnumerable<Instructor> Instructors { get; private set; }
     public Uri LinkExternalCourse { get; private set; }
 
-    public Course(string name,
+    public Course(string title,
                   double note,
                   IEnumerable<Instructor> instructors, 
                   Uri linkExternalCourse = null)
     {
-      Name = name;
+      Title = title;
       Score = note;
       Instructors = instructors;
       LinkExternalCourse = linkExternalCourse;
@@ -26,7 +26,7 @@ namespace Totvs.Olympus.Domain.Entities
 
     public Course(CourseInputDTO course)
     {
-      Name = course.Name;
+      Title = course.Title;
       Score = course.Score;
       Instructors = course.Instructors.Select(x => new Instructor(x.Name, x.Expertise.ToList()));
       LinkExternalCourse = course.LinkExternalCourse;

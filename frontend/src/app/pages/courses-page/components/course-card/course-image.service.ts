@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-const rootUrl = '../../../../../assets/img/course-images/';
+const rootUrl = 'assets/img/course-images/';
 const numberOfImages = 19;
 
 @Injectable({

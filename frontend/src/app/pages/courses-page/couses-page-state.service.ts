@@ -8,13 +8,15 @@ export interface CoursesPageState {
   readonly currentPage: number;
   readonly hasNext: boolean;
   readonly isLoading: boolean;
+  readonly filter: string;
 }
 
 const initialState: CoursesPageState = {
   page: [],
   currentPage: 1,
   hasNext: false,
-  isLoading: false
+  isLoading: false,
+  filter: ''
 };
 
 @Injectable()
@@ -23,17 +25,17 @@ export class CoursesPageStateService extends State<CoursesPageState> {
     super(initialState);
   }
 
-  async initialize(): Promise<void> {
-    this.forceSetState({... initialState});
-    await this.getPage(this.snapshot.currentPage);
+  async initialize(filter = ''): Promise<void> {
+    this.forceSetState({... initialState, filter});
+    return this.getPage(this.snapshot.currentPage, this.snapshot.filter);
   }
 
-  async getPage(pageNumber: number): Promise<void> {
+  private async getPage(pageNumber: number, filter: string): Promise<void> {
     this.setState(draft => {
       draft.isLoading = true;
     });
     try {
-      const result = await this.coursesService.getAllCourses(pageNumber).toPromise();
+      const result = await this.coursesService.getAllCourses(pageNumber, filter).toPromise();
       this.setState(draft => {
         draft.page = draft.page.concat(result.items);
         draft.hasNext = result.hasNext;
@@ -47,6 +49,6 @@ export class CoursesPageStateService extends State<CoursesPageState> {
   }
 
   async goToNextPage(): Promise<void> {
-    return this.getPage(this.snapshot.currentPage + 1);
+    return this.getPage(this.snapshot.currentPage + 1, this.snapshot.filter);
   }
 }

@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
@@ -6,6 +7,7 @@ import { PoContainerModule, PoModule, PoWidgetModule } from '@po-ui/ng-component
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CourseCardComponent } from './pages/courses-page/components/course-card/course-card.component';
+import { CourseDetailModalComponent } from './pages/courses-page/components/course-detail-modal/course-detail-modal.component';
 import { CourseListComponent } from './pages/courses-page/components/course-list/course-list.component';
 import { CoursesPageComponent } from './pages/courses-page/courses-page.component';
 import { SharedModule } from './shared/shared.module';
@@ -17,7 +19,8 @@ import { AppTranslationLoader } from './shared/translation-loader/translation-lo
     AppComponent,
     CoursesPageComponent,
     CourseCardComponent,
-    CourseListComponent
+    CourseListComponent,
+    CourseDetailModalComponent
   ],
   imports: [
     BrowserModule,
@@ -30,9 +33,11 @@ import { AppTranslationLoader } from './shared/translation-loader/translation-lo
       defaultLanguage: 'pt'
     }),
     PoContainerModule,
-    PoWidgetModule
+    PoWidgetModule,
+    FormsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [CourseDetailModalComponent]
 })
 export class AppModule { }
