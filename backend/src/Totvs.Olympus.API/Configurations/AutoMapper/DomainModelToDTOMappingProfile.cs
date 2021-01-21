@@ -28,6 +28,7 @@ namespace Totvs.Olympus.API.Configurations.AutoMapper
     private void MapEntities()
     {
       CreateMap<Course, CourseDTO>();
+      CreateMap<LearningPath, LearningPathDTO>();
     }
     private void MappingValueObjects()
     {

@@ -4,9 +4,11 @@ using Microsoft.Extensions.Options;
 using System;
 using Totvs.Olympus.CrossCutting.ExternalServices.Enum;
 using Totvs.Olympus.Domain.ExternalServices;
+using Totvs.Olympus.Domain.RepositoryContracts;
 using Totvs.Olympus.Domain.Services;
 using Totvs.Olympus.Infrastructure.ExternalServices;
 using Totvs.Olympus.Infrastructure.Models;
+using Totvs.Olympus.Infrastructure.Repositories;
 using Totvs.Olympus.Infrastructure.Services;
 
 namespace Totvs.Olympus.API.Configurations
@@ -20,6 +22,7 @@ namespace Totvs.Olympus.API.Configurations
       services.AddSingleton<IOlympusDatabaseSettings>(sp => sp.GetRequiredService<IOptions<OlympusDatabaseSettings>>().Value);
 
       services.AddScoped<ICourseMongoService, CourseMongoService>();
+      services.AddScoped<ILearningPathService, LearningPathService>();
 
       return services;
     }
