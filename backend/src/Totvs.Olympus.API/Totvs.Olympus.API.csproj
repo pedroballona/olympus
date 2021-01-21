@@ -12,6 +12,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Totvs.Olympus.CrossCutting\Totvs.Olympus.CrossCutting.csproj" />
+    <ProjectReference Include="..\Totvs.Olympus.Domain\Totvs.Olympus.Domain.csproj" />
+    <ProjectReference Include="..\Totvs.Olympus.Infrastructure\Totvs.Olympus.Infrastructure.csproj" />
   </ItemGroup>
 
 

@@ -2,6 +2,8 @@
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using Totvs.Olympus.CrossCutting.ExternalServices.Enum;
+using Totvs.Olympus.Domain.ExternalServices;
+using Totvs.Olympus.Infrastructure.ExternalServices;
 
 namespace Totvs.Olympus.API.Configurations
 {
@@ -19,6 +21,8 @@ namespace Totvs.Olympus.API.Configurations
                SetHandlerLifetime(TimeSpan.FromMinutes(5)).
                AddPolicyHandler(PolicyHandler.GetRetryPolicy()).
                AddPolicyHandler(PolicyHandler.Timeout());
+
+      services.AddScoped<IAluraHttpService, AluraHttpService>();
 
       return services;
     }
