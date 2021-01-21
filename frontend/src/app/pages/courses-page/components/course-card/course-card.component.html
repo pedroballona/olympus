@@ -1,4 +1,5 @@
-<po-container *ngIf="course$ | async as course">
+<po-widget *ngIf="course$ | async as course" 
+[p-primary-label]="'Detalhes'">
   <div class="container">
     <div
       class="image-container po-mb-2"
@@ -19,4 +20,4 @@
       >{{ course.title }}</a
     >
   </div>
-</po-container>
+</po-widget>

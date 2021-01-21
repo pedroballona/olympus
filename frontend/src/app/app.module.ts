@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { PoContainerModule, PoModule } from '@po-ui/ng-components';
+import { PoContainerModule, PoModule, PoWidgetModule } from '@po-ui/ng-components';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CourseCardComponent } from './pages/courses-page/components/course-card/course-card.component';
@@ -29,7 +29,8 @@ import { AppTranslationLoader } from './shared/translation-loader/translation-lo
       loader: {provide: TranslateLoader, useClass: AppTranslationLoader},
       defaultLanguage: 'pt'
     }),
-    PoContainerModule
+    PoContainerModule,
+    PoWidgetModule
   ],
   providers: [],
   bootstrap: [AppComponent]
