@@ -8,12 +8,16 @@ import { AppComponent } from './app.component';
 import { CoursesPageComponent } from './pages/courses-page/courses-page.component';
 import { SharedModule } from './shared/shared.module';
 import { AppTranslationLoader } from './shared/translation-loader/translation-loader';
+import { CourseCardComponent } from './pages/courses-page/components/course-card/course-card.component';
+import { CourseListComponent } from './pages/courses-page/components/course-list/course-list.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    CoursesPageComponent
+    CoursesPageComponent,
+    CourseCardComponent,
+    CourseListComponent
   ],
   imports: [
     BrowserModule,

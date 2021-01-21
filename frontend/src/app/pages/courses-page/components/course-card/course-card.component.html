@@ -1,0 +1,5 @@
+<div *ngIf="course$ | async as course">
+  <img [src]="course.imageUrl">
+  <p>{{course.title}}</p>
+  <p>{{course.instructors}}</p>
+</div>
