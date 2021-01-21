@@ -22,13 +22,13 @@ namespace Totvs.Olympus.Infrastructure.Repositories
       _mapper = mapper;
     }
 
-    public async Task<IQueryResult<CourseDTO>> GetAllPaginatedContracts()
+    public async Task<IQueryResult<CourseDTO>> GetAllPaginatedContracts(RequestAllOptionsDTO optionsDTO)
     {
       var result = await _getAllService.GetCourses();
 
       var mapped = _mapper.Map<IEnumerable<CourseDTO>>(result);
 
-      return AutoMapperQueryble.Paginate(mapped, new PaginationOptions<CourseDTO>());
+      return AutoMapperQueryble.Paginate(mapped, optionsDTO);
     }
   }
 }

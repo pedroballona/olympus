@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using Totvs.Olympus.CrossCutting.DefaultContract;
 using Totvs.Olympus.CrossCutting.DTOs;
@@ -20,9 +21,9 @@ namespace Totvs.Olympus.API.Controllers
 
     [HttpGet]
     [MapToApiVersion("1.0")]
-    public async Task<IQueryResult<CourseDTO>> GetAllCourses()
+    public async Task<IQueryResult<CourseDTO>> GetAllCourses([FromQuery] RequestAllOptionsDTO optionsDTO)
     {
-      var result = await _repository.GetAllPaginatedContracts();
+      var result = await _repository.GetAllPaginatedContracts(optionsDTO);
       return result;
     }
   }

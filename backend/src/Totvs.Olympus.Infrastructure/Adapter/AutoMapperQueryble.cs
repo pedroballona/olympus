@@ -45,5 +45,9 @@ namespace Totvs.Olympus.Infrastructure.Adapter
       return new QueryResult<TDocument>(hasNext, listResult);
 
     }
+    public static IQueryResult<TDocument> Paginate<TDocument>(IEnumerable<TDocument> documents, RequestAllOptionsDTO options)
+    {
+      return Paginate(documents, TotvsApiMongoAdapter.AdaptOptionsToMongo<TDocument>(options));
+    }
   }
 }
