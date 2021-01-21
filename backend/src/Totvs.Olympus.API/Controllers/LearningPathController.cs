@@ -41,6 +41,26 @@ namespace Totvs.Olympus.API.Controllers
       return result;
     }
 
+    [HttpPut]
+    [MapToApiVersion("1.0")]
+    [Route("{id}")]
+    public async Task<LearningPath> Update(Guid Id, [FromBody] LearningPathDTO learningPathDTO)
+    {
+      var learningPath = new LearningPath(learningPathDTO);
+      var result = await _service.Update(Id, learningPath);
+
+      return result;
+    }
+
+    [HttpDelete]
+    [MapToApiVersion("1.0")]
+    [Route("{id}")]
+    public async Task<NoContentResult> Delete(Guid Id)
+    {
+      await _service.Delete(Id);
+      return NoContent();
+    }
+
     [HttpGet]
     [MapToApiVersion("1.0")]
     [Route("{id}")]

@@ -34,6 +34,27 @@ namespace Totvs.Olympus.Infrastructure.Services
       return learningPath;
     }
 
+    public async Task<LearningPath> Update(Guid Id, LearningPath learningPath)
+    {
+      var filter = Builders<LearningPath>.Filter.Eq(lp => lp.Id, Id);
+      var update = Builders<LearningPath>.Update.Set(lp => lp.Name, learningPath.Name)
+                                                .Set(lp => lp.Description, learningPath.Description)
+                                                .Set(lp => lp.Courses, learningPath.Courses)
+                                                .Set(lp => lp.EmployeeRoles, learningPath.EmployeeRoles)
+                                                .Set(lp => lp.DateUpdated, DateTime.Now);
+
+      await _collection.UpdateOneAsync(filter, update);
+      var result = await LoadById(Id);
+
+      return result;
+    }
+
+    public async Task Delete(Guid Id)
+    {
+      var result = await _collection.DeleteOneAsync(lp => lp.Id == Id);
+      return;
+    }
+
     public async Task<LearningPath> LoadById(Guid Id)
     {
       var ret = await _collection.FindAsync(x => x.Id == Id);
