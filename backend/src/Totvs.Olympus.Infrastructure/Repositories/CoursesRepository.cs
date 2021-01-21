@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Totvs.Olympus.CrossCutting.DefaultContract;
 using Totvs.Olympus.CrossCutting.DTOs;
@@ -25,9 +27,12 @@ namespace Totvs.Olympus.Infrastructure.Repositories
       _mapper = mapper;
     }
 
-    public async Task<IQueryResult<CourseDTO>> GetAllPaginatedContracts(RequestAllOptionsDTO optionsDTO)
+    public async Task<IQueryResult<CourseDTO>> GetAllPaginatedContracts(string filter, RequestAllOptionsDTO optionsDTO)
     {
       var result = await _getAllService.GetCourses();
+
+      if (!string.IsNullOrEmpty(filter))
+        result = result.Where(x => x.Nome.ToLower().Contains(filter.ToLower()));
 
       var mapped = _mapper.Map<IEnumerable<CourseDTO>>(result);
 

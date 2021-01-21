@@ -6,7 +6,7 @@ namespace Totvs.Olympus.Domain.RepositoryContracts
 {
   public interface ICoursesRepository
   {
-    Task<IQueryResult<CourseDTO>> GetAllPaginatedContracts(RequestAllOptionsDTO optionsDTO);
+    Task<IQueryResult<CourseDTO>> GetAllPaginatedContracts(string filter, RequestAllOptionsDTO optionsDTO);
     Task<DetailCourseDTO> GetDetailCourse(string courseId);
   }
 }
