@@ -24,6 +24,7 @@ namespace Totvs.Olympus.API.Configurations
 
       services.AddScoped<IAluraHttpService, AluraHttpService>();
       services.AddScoped<IGetAllCoursesFromAluraService, GetAllCoursesFromAluraService>();
+      services.AddScoped<IGetDetailCoursesService, GetDetailCoursesService>();
 
       return services;
     }
