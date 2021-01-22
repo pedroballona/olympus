@@ -129,5 +129,8 @@
       }
     }
   },
-  "defaultProject": "olympus-ui"
+  "defaultProject": "olympus-ui",
+  "cli": {
+    "analytics": false
+  }
 }
