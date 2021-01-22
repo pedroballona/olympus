@@ -9,6 +9,7 @@ namespace Totvs.Olympus.API.Infrastructure
     public static IServiceCollection AddRepositories(this IServiceCollection services)
     {
       services.AddScoped<ICoursesRepository, CoursesRepository>();
+      services.AddScoped<IUserRepository, UserRepository>();
 
       return services;
     }
