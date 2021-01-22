@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { PoModalAction, PoModalComponent } from '@po-ui/ng-components';
@@ -12,7 +12,7 @@ import { assert } from '../../../../shared/assert';
   templateUrl: './course-detail-modal.component.html',
   styleUrls: ['./course-detail-modal.component.css'],
 })
-export class CourseDetailModalComponent implements OnInit {
+export class CourseDetailModalComponent {
   course: Course | null = null;
   courseId: string | null = null;
 
@@ -49,8 +49,6 @@ export class CourseDetailModalComponent implements OnInit {
     private translateService: TranslateService,
     private router: Router
   ) {}
-
-  ngOnInit(): void {}
 
   open(courseId: string, course: Course): void {
     this.course = course;
