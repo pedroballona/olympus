@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Totvs.Olympus.CrossCutting.DefaultContract;
 using Totvs.Olympus.CrossCutting.DTOs;
 using Totvs.Olympus.Domain.Entities;
-using Totvs.Olympus.Domain.Services;
+using Totvs.Olympus.Domain.RepositoryContracts;
 
 namespace Totvs.Olympus.API.Controllers
 {
@@ -13,18 +13,18 @@ namespace Totvs.Olympus.API.Controllers
   [Route("api/v{version:apiVersion}/learning-path")]
   public class LearningPathController : ControllerBase
   {
-    private readonly ILearningPathService _service;
+    private readonly ILearningPathRepository _repository;
 
-    public LearningPathController(ILearningPathService service)
+    public LearningPathController(ILearningPathRepository repository)
     {
-      _service = service;
+      _repository = repository;
     }
 
     [HttpGet]
     [MapToApiVersion("1.0")]
     public IQueryResult<LearningPathDTO> GetAll([FromQuery] string filter, [FromQuery] RequestAllOptionsDTO optionsDTO)
     {
-      var result = _service.GetAllPaginated(filter, optionsDTO);
+      var result = _repository.GetAllPaginated(filter, optionsDTO);
       return result;
     }
 
@@ -33,7 +33,7 @@ namespace Totvs.Olympus.API.Controllers
     public async Task<LearningPath> Insert([FromBody] LearningPathDTO learningPathDTO)
     {
       var learningPath = new LearningPath(learningPathDTO);
-      var result = await _service.Insert(learningPath);
+      var result = await _repository.Insert(learningPath);
 
       return result;
     }
@@ -44,7 +44,7 @@ namespace Totvs.Olympus.API.Controllers
     public async Task<LearningPath> Update(Guid Id, [FromBody] LearningPathDTO learningPathDTO)
     {
       var learningPath = new LearningPath(learningPathDTO);
-      var result = await _service.Update(Id, learningPath);
+      var result = await _repository.Update(Id, learningPath);
 
       return result;
     }
@@ -54,7 +54,7 @@ namespace Totvs.Olympus.API.Controllers
     [Route("{id}")]
     public async Task<NoContentResult> Delete(Guid Id)
     {
-      await _service.Delete(Id);
+      await _repository.Delete(Id);
       return NoContent();
     }
 
@@ -63,7 +63,7 @@ namespace Totvs.Olympus.API.Controllers
     [Route("{id}")]
     public async Task<LearningPath> GetById(Guid id)
     {
-      var result = await _service.LoadById(id);
+      var result = await _repository.LoadById(id);
       return result;
     }
   }
