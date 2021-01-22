@@ -1,12 +1,8 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-using System;
-using Totvs.Olympus.CrossCutting.ExternalServices.Enum;
-using Totvs.Olympus.Domain.ExternalServices;
 using Totvs.Olympus.Domain.RepositoryContracts;
 using Totvs.Olympus.Domain.Services;
-using Totvs.Olympus.Infrastructure.ExternalServices;
 using Totvs.Olympus.Infrastructure.Models;
 using Totvs.Olympus.Infrastructure.Repositories;
 using Totvs.Olympus.Infrastructure.Services;
@@ -23,6 +19,7 @@ namespace Totvs.Olympus.API.Configurations
 
       services.AddScoped<ICourseMongoService, CourseMongoService>();
       services.AddScoped<ILearningPathService, LearningPathService>();
+      services.AddScoped<IUserRepository, UserRepository>();
 
       return services;
     }

@@ -2,14 +2,13 @@
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Totvs.Olympus.CrossCutting.DefaultContract;
 using Totvs.Olympus.CrossCutting.DTOs;
 using Totvs.Olympus.Domain.Entities;
+using Totvs.Olympus.Domain.Interfaces;
 using Totvs.Olympus.Domain.Services;
-using Totvs.Olympus.Infrastructure.Adapter;
 using Totvs.Olympus.Infrastructure.Models;
 
 namespace Totvs.Olympus.Infrastructure.Services
@@ -18,15 +17,18 @@ namespace Totvs.Olympus.Infrastructure.Services
   {
     private readonly IMongoCollection<Course> _collection;
     private readonly IMapper _mapper;
+    private readonly INotificationContext _notificationContext;
 
     public CourseMongoService(IOlympusDatabaseSettings settings,
-                              IMapper mapper)
+                              IMapper mapper, 
+                              INotificationContext notificationContext)
     {
       var client = new MongoClient(settings.ConnectionString);
       var database = client.GetDatabase(settings.DatabaseName);
 
       _collection = database.GetCollection<Course>(nameof(Course));
       _mapper = mapper;
+      _notificationContext = notificationContext;
     }
 
     public async Task<Course> CreateCourse(CourseInputDTO course)
@@ -48,7 +50,13 @@ namespace Totvs.Olympus.Infrastructure.Services
       if (!string.IsNullOrEmpty(filter))
         result = result.Where(x => x.Title.ToLower().Contains(filter.ToLower()));
       
-      return await result.Paginate(optionsDTO);
+      var paginated = await result.Paginate(optionsDTO);
+
+      if (paginated.Items.Any())
+        return paginated;
+
+      _notificationContext.AddNotification("NO_COURSE_FOUND.", "No course was found with this filters.", EStatusCodeNotification.NotFound);
+      return null;
     }
 
     public async Task<Course> GetCourseByExternalId(string externalId)
@@ -63,7 +71,10 @@ namespace Totvs.Olympus.Infrastructure.Services
       var result =  await ret.FirstOrDefaultAsync();
 
       if (result is null)
+      {
+        _notificationContext.AddNotification("NO_COURSE_FOUND.", "No course was found with this Id.", EStatusCodeNotification.NotFound);
         return default(DetailCourseDTO);
+      }
 
       return new DetailCourseDTO()
       {
