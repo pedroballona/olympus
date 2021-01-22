@@ -1,5 +1,5 @@
 #language: pt
-Funcionalidade: Home Page
+Funcionalidade: (E2E) Home Page
     Eu, como usuário, quero visualizar a página inicial com uma breve descrição do sistema e um fácil mecanismo de busca
 
   Contexto:

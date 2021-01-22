@@ -1,5 +1,5 @@
 #language: pt
-Funcionalidade: Listagem de cursos
+Funcionalidade: (E2E) Listagem de cursos
     Eu, como usuário, quero visualizar os cursos, de forma simples, tendo opção de ver detalhes ou iniciar o cursos
 
   Contexto:
