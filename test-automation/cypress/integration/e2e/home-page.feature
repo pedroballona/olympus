@@ -11,10 +11,6 @@ Funcionalidade: Home Page
     E o campo de busca é disponibilizado
 
   Cenario: Busca simples por treinamento
-    Quando digito um termo na Busca
+    Quando digito o termo "<covid>" termo na Busca
     E clico em pesquisar
-    Entao a seguinte lista de treinamentos, que possuem o termo buscado, é exibida
-      | title                                | author      |
-      | The Devil in the White City          | Erik Larson |
-      | The Lion, the Witch and the Wardrobe | C.S. Lewis  |
-      | In the Garden of Beasts              | Erik Larson |
+    Entao o treinamento "Análise de série temporal: COVID-19" é exibido
