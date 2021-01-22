@@ -26,7 +26,7 @@ namespace Totvs.Olympus.API.Configurations.AutoMapper
         ForMember(dest => dest.Title, opt => opt.MapFrom(src => src.Nome)).
         ForMember(dest => dest.Description, opt => opt.MapFrom(src => string.Join(". ", src.Chamadas))).
         ForMember(dest => dest.Score, opt => opt.MapFrom(src => src.Nota)).
-        ForMember(dest => dest.InstructorsNames, opt => opt.MapFrom(src => src.Instrutores.Select(s => s.Nome)));
+        ForMember(dest => dest.Instructors, opt => opt.MapFrom(src => src.Instrutores.Select(s => s.Nome)));
     }
   }
 }

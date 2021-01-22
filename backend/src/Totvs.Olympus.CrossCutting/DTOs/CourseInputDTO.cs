@@ -10,5 +10,7 @@ namespace Totvs.Olympus.CrossCutting.DTOs
     public double Score { get; set; }
     public IEnumerable<InstructorDTO> Instructors { get; set; }
     public Uri LinkExternalCourse { get; set; }
+    public Uri FirstClass { get; set; }
+    public string ExternalId { get; set; }
   }
 }
