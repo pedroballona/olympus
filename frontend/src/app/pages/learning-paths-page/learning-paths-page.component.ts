@@ -1,8 +1,9 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { Subject } from "rxjs";
 import { distinctUntilChanged, map, takeUntil } from "rxjs/operators";
 import { LoaderService } from "../../shared/totvs-loader/loader/loader.service";
+import { LearningPathInputModalComponent } from "./learning-path-input-modal/learning-path-input-modal.component";
 import { LearningPathsPageStateService } from "./learning-paths-page-state.service";
 
 @Component({
@@ -12,6 +13,9 @@ import { LearningPathsPageStateService } from "./learning-paths-page-state.servi
   providers: [LearningPathsPageStateService],
 })
 export class LearningPathsPageComponent implements OnInit, OnDestroy {
+  @ViewChild(LearningPathInputModalComponent)
+  inputModal: LearningPathInputModalComponent | undefined;
+
   state$ = this.stateService.state$;
   private destroySubject = new Subject<void>();
 
@@ -45,6 +49,14 @@ export class LearningPathsPageComponent implements OnInit, OnDestroy {
           this.loaderService.hide();
         }
       });
+  }
+
+  public openInputModal() {
+    this.inputModal.open();
+  }
+
+  public async onSave() {
+    await this.stateService.initialize();
   }
 
   onNextClicked(): Promise<void> {

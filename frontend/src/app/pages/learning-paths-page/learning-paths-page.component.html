@@ -1,9 +1,22 @@
 <ng-container *ngIf="state$ | async as state">
   <h1>{{ "l-learning-paths-title" | translate }}</h1>
 
+<div class="po-mb-2">
+  <po-button
+  [p-label]="'l-input-learning-path' | translate"
+  p-icon="po-icon-plus"
+  p-type="primary"
+  (p-click)="openInputModal()"
+  >
+  </po-button>
+</div>
   <app-learning-path-list
     [learningPaths]="state.page"
     [hasNext]="state.hasNext"
     (nextClicked)="onNextClicked()"
   ></app-learning-path-list>
 </ng-container>
+<app-learning-path-input-modal #inputModal
+  (saved)="onSave()"
+>
+</app-learning-path-input-modal>

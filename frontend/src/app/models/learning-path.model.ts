@@ -1,9 +1,9 @@
 export interface LearningPath {
-  readonly id: string;
-  readonly name: string;
-  readonly description: string;
-  readonly courses: string[];
-  readonly employeeRoles: string[];
+  id: string;
+  name: string;
+  description: string;
+  courses: string[];
+  employeeRoles: number[];
 }
 
 export interface LearningPathWithImage extends LearningPath {

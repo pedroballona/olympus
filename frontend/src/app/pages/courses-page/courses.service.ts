@@ -1,23 +1,30 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { environment } from '../../../environments/environment';
-import { Course, SimpleCourse } from '../../models/course.model';
-import { TotvsPage } from '../../models/totvspage.model';
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
+import { environment } from "../../../environments/environment";
+import {
+  Course,
+  CoursesLookupItem,
+  SimpleCourse,
+} from "../../models/course.model";
+import { TotvsPage } from "../../models/totvspage.model";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class CoursesService {
   constructor(private http: HttpClient) {}
 
-  getAllCourses(page: number, filter = ''): Observable<TotvsPage<SimpleCourse>> {
+  getAllCourses(
+    page: number,
+    filter = ""
+  ): Observable<TotvsPage<SimpleCourse>> {
     return this.http.get<TotvsPage<SimpleCourse>>(
-      environment.backendUrl + 'courses',
+      environment.backendUrl + "courses",
       {
         params: {
-          page: page + '',
-          filter
+          page: page + "",
+          filter,
         },
       }
     );
@@ -25,5 +32,11 @@ export class CoursesService {
 
   getCourse(id: string): Observable<Course> {
     return this.http.get<Course>(`${environment.backendUrl}courses/${id}`);
+  }
+
+  getCoursesLookup(): Observable<CoursesLookupItem[]> {
+    return this.http.get<CoursesLookupItem[]>(
+      `${environment.backendUrl}courses/lookup`
+    );
   }
 }

@@ -31,4 +31,16 @@ export class LearningPathsService {
       `${environment.backendUrl}learning-path/${id}`
     );
   }
+
+  inputLearningPath(learningPath: LearningPath) {
+    const learningPathToSend = {
+      ...learningPath,
+      employeeRoles: learningPath.employeeRoles.map((x) => +x),
+    };
+
+    return this.http.post(
+      `${environment.backendUrl}learning-path`,
+      learningPathToSend
+    );
+  }
 }

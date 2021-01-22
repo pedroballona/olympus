@@ -21,6 +21,7 @@ import { LearningPathCardComponent } from './pages/learning-paths-page/component
 import { LearningPathListComponent } from './pages/learning-paths-page/components/learning-path-list/learning-path-list.component';
 import { LearningPathDetailModalComponent } from './pages/learning-paths-page/components/learning-path-detail-modal/learning-path-detail-modal.component';
 import { LessonPageComponent } from './pages/lesson-page/lesson-page.component';
+import { LearningPathInputModalComponent } from './pages/learning-paths-page/learning-path-input-modal/learning-path-input-modal.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { LessonPageComponent } from './pages/lesson-page/lesson-page.component';
     LearningPathCardComponent,
     LearningPathListComponent,
     LearningPathDetailModalComponent,
-    LessonPageComponent
+    LessonPageComponent,
+    LearningPathInputModalComponent
   ],
   imports: [
     BrowserModule,
