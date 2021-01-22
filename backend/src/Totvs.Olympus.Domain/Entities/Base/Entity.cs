@@ -26,6 +26,10 @@ namespace Totvs.Olympus.Domain.Entities
 
     #endregion
 
+    protected Entity(Guid id)
+    {
+      Id = id;
+    }
 
     protected Entity()
     {

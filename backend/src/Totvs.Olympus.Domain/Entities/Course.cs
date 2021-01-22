@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Totvs.Olympus.CrossCutting.DTOs;
+using Totvs.Olympus.Domain.Validations;
 using Totvs.Olympus.Domain.ValueObjects;
 
 namespace Totvs.Olympus.Domain.Entities
@@ -28,6 +29,7 @@ namespace Totvs.Olympus.Domain.Entities
       LinkExternalCourse = linkExternalCourse;
       FirstClass = firstClass;
       ExternalId = externalId;
+      Validate();
     }
 
     public Course(CourseInputDTO course)
@@ -38,6 +40,12 @@ namespace Totvs.Olympus.Domain.Entities
       LinkExternalCourse = course.LinkExternalCourse;
       FirstClass = course.FirstClass;
       ExternalId = course.ExternalId;
+      Validate();
+    }
+
+    public void Validate()
+    {
+      Validate(this, new CourseValidator());
     }
   }
 }
