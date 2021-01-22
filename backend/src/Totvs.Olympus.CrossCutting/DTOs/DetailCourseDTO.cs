@@ -8,7 +8,8 @@ namespace Totvs.Olympus.CrossCutting.DTOs
   {
     public string Title { get; set; }
     public string Description { get; set; }
-    public IEnumerable<string> InstructorsNames { get; set; }
+    public IEnumerable<string> Instructors { get; set; }
     public double Score { get; set; }
+    public Uri FirstClass { get; set; }
   }
 }
