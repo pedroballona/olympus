@@ -10,5 +10,11 @@
   "l-close": "Fechar",
   "l-instructors": "Instrutores",
   "l-no-course-found": "Nenhum curso encontrado",
-  "l-courses-title-search": "Buscando por curso: \"{{filter}}\""
+  "l-learning-paths": "Trilhas",
+  "l-learning-paths-title": "Trilhas de Conhecimento",
+  "l-no-learning-path-found": "Nenhuma trilha de conhecimento encontrada",
+  "l-start-learning-path": "Matricular",
+  "l-courses-title-search": "Buscando por curso: \"{{filter}}\"",
+  "l-courses-in-learning-path": "Cursos dessa trilha de conhecimento",
+  "l-input-learning-path": "Cadastrar trilha de conhecimento"
 }

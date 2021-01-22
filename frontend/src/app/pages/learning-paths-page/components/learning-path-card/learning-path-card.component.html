@@ -1,0 +1,28 @@
+<po-widget
+  *ngIf="learningPath$ | async as learningPath"
+  [p-primary-label]="'l-start-learning-path' | translate"
+  [p-secondary-label]="'l-details' | translate"
+  (p-secondary-action)="detailsClicked.emit()"
+>
+  <div class="container">
+    <div
+      class="image-container po-mb-2"
+      [style.background-image]="'url(' + learningPath.imageUrl + ')'"
+    >
+      <div class="image-overlay" [class.show]="mouseOverImage"></div>
+      <div class="fas fa-play-circle app-center" *ngIf="mouseOverImage"></div>
+      <div
+        class="overlay"
+        (mouseenter)="setMouseOverImage(true)"
+        (mouseleave)="setMouseOverImage(false)"
+      >        
+      </div>
+    </div>
+    <a
+      class="title app-clickable"
+      (mouseenter)="setMouseOverImage(true)"
+      (mouseleave)="setMouseOverImage(false)"
+      >{{ learningPath.name }}</a
+    >
+  </div>
+</po-widget>
