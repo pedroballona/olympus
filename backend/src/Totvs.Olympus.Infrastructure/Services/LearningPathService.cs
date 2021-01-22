@@ -61,15 +61,14 @@ namespace Totvs.Olympus.Infrastructure.Services
       return await ret.FirstOrDefaultAsync();
     }
 
-    public IQueryResult<LearningPathDTO> GetAllPaginated(string filter, RequestAllOptionsDTO optionsDTO)
+    public IQueryResult<LearningPath> GetAllPaginated(string filter, RequestAllOptionsDTO optionsDTO)
     {
       var result = _collection.AsQueryable();
 
       if (!string.IsNullOrEmpty(filter))
         result = result.Where(x => x.Name.ToLower().Contains(filter.ToLower()));
 
-      var mapped = _mapper.Map<IEnumerable<LearningPathDTO>>(result);
-      return AutoMapperQueryble.Paginate(mapped, optionsDTO);
+      return AutoMapperQueryble.Paginate(result, optionsDTO);
     }
   }
 }

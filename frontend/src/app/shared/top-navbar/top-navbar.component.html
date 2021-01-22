@@ -5,6 +5,7 @@
       <div class="menu">
         <a class="app-clickable" [routerLink]="''">{{'l-home' | translate}}</a>
         <a class="app-clickable" [routerLink]="['courses']">{{'l-courses' | translate}}</a>
+        <a class="app-clickable" [routerLink]="['learning-paths']">{{'l-learning-paths' | translate}}</a>
       </div>
       <div class="right-desktop-content">
         <span *ngIf="showSearch$ | async" class="po-icon po-icon-search app-clickable" (click)="toggleSearch()"></span>

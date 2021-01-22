@@ -1,17 +1,18 @@
-import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterModule } from '@angular/router';
-import { TranslateModule } from '@ngx-translate/core';
-import { PoMenuModule } from '@po-ui/ng-components';
-import { BackgroundSlideshowComponent } from './background-slideshow/background-slideshow.component';
-import { InstructorImagePipe } from './instructor-image.pipe';
-import { SearchBarComponent } from './search-bar/search-bar.component';
-import { SideBarComponent } from './side-bar/side-bar.component';
-import { TopNavbarComponent } from './top-navbar/top-navbar.component';
-import { TotvsLoaderGlobalComponent } from './totvs-loader/totvs-loader-global/totvs-loader-global.component';
-import { TotvsLoaderComponent } from './totvs-loader/totvs-loader.component';
+import { CommonModule } from "@angular/common";
+import { NgModule } from "@angular/core";
+import { FormsModule } from "@angular/forms";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { RouterModule } from "@angular/router";
+import { TranslateModule } from "@ngx-translate/core";
+import { PoMenuModule } from "@po-ui/ng-components";
+import { BackgroundSlideshowComponent } from "./background-slideshow/background-slideshow.component";
+import { CourseImagePipe } from "./course-image.pipe";
+import { InstructorImagePipe } from "./instructor-image.pipe";
+import { SearchBarComponent } from "./search-bar/search-bar.component";
+import { SideBarComponent } from "./side-bar/side-bar.component";
+import { TopNavbarComponent } from "./top-navbar/top-navbar.component";
+import { TotvsLoaderGlobalComponent } from "./totvs-loader/totvs-loader-global/totvs-loader-global.component";
+import { TotvsLoaderComponent } from "./totvs-loader/totvs-loader.component";
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { TotvsLoaderComponent } from './totvs-loader/totvs-loader.component';
     SideBarComponent,
     TotvsLoaderComponent,
     TotvsLoaderGlobalComponent,
-    InstructorImagePipe
+    InstructorImagePipe,
+    CourseImagePipe,
   ],
   imports: [
     CommonModule,
@@ -29,7 +31,7 @@ import { TotvsLoaderComponent } from './totvs-loader/totvs-loader.component';
     PoMenuModule,
     BrowserAnimationsModule,
     TranslateModule.forChild(),
-    FormsModule
+    FormsModule,
   ],
   exports: [
     SearchBarComponent,
@@ -38,7 +40,8 @@ import { TotvsLoaderComponent } from './totvs-loader/totvs-loader.component';
     SideBarComponent,
     TotvsLoaderComponent,
     TotvsLoaderGlobalComponent,
-    InstructorImagePipe
+    InstructorImagePipe,
+    CourseImagePipe,
   ],
 })
 export class SharedModule {}

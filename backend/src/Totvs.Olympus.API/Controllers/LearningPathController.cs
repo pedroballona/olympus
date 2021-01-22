@@ -22,7 +22,7 @@ namespace Totvs.Olympus.API.Controllers
 
     [HttpGet]
     [MapToApiVersion("1.0")]
-    public IQueryResult<LearningPathDTO> GetAll([FromQuery] string filter, [FromQuery] RequestAllOptionsDTO optionsDTO)
+    public IQueryResult<LearningPath> GetAll([FromQuery] string filter, [FromQuery] RequestAllOptionsDTO optionsDTO)
     {
       var result = _service.GetAllPaginated(filter, optionsDTO);
       return result;
