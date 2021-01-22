@@ -4,9 +4,9 @@ using Totvs.Olympus.CrossCutting.DefaultContract;
 using Totvs.Olympus.CrossCutting.DTOs;
 using Totvs.Olympus.Domain.Entities;
 
-namespace Totvs.Olympus.Domain.Services
+namespace Totvs.Olympus.Domain.RepositoryContracts
 {
-  public interface ICourseMongoService
+  public interface ICourseRepository
   {
     Task<Course> CreateCourse(CourseInputDTO course);
     Task<IQueryResult<CourseDTO>> GetAllPaginatedCourses(string filter, RequestAllOptionsDTO optionsDTO);

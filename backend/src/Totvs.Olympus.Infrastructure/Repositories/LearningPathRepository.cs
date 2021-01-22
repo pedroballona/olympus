@@ -7,18 +7,18 @@ using System.Threading.Tasks;
 using Totvs.Olympus.CrossCutting.DefaultContract;
 using Totvs.Olympus.CrossCutting.DTOs;
 using Totvs.Olympus.Domain.Entities;
-using Totvs.Olympus.Domain.Services;
+using Totvs.Olympus.Domain.RepositoryContracts;
 using Totvs.Olympus.Infrastructure.Adapter;
 using Totvs.Olympus.Infrastructure.Models;
 
 namespace Totvs.Olympus.Infrastructure.Services
 {
-  public class LearningPathService : ILearningPathService
+  public class LearningPathRepository : ILearningPathRepository
   {
     private readonly IMongoCollection<LearningPath> _collection;
     private readonly IMapper _mapper;
 
-    public LearningPathService(IOlympusDatabaseSettings settings,
+    public LearningPathRepository(IOlympusDatabaseSettings settings,
                                IMapper mapper)
     {
       var client = new MongoClient(settings.ConnectionString);

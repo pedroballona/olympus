@@ -8,18 +8,18 @@ using Totvs.Olympus.CrossCutting.DefaultContract;
 using Totvs.Olympus.CrossCutting.DTOs;
 using Totvs.Olympus.Domain.Entities;
 using Totvs.Olympus.Domain.Interfaces;
-using Totvs.Olympus.Domain.Services;
+using Totvs.Olympus.Domain.RepositoryContracts;
 using Totvs.Olympus.Infrastructure.Models;
 
 namespace Totvs.Olympus.Infrastructure.Services
 {
-  public class CourseMongoService : ICourseMongoService
+  public class CourseRepository : ICourseRepository
   {
     private readonly IMongoCollection<Course> _collection;
     private readonly IMapper _mapper;
     private readonly INotificationContext _notificationContext;
 
-    public CourseMongoService(IOlympusDatabaseSettings settings,
+    public CourseRepository(IOlympusDatabaseSettings settings,
                               IMapper mapper, 
                               INotificationContext notificationContext)
     {

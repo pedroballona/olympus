@@ -1,13 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 using Totvs.Olympus.CrossCutting.DefaultContract;
 using Totvs.Olympus.CrossCutting.DTOs;
 using Totvs.Olympus.Domain.Entities;
-using Totvs.Olympus.Domain.Interfaces;
 using Totvs.Olympus.Domain.RepositoryContracts;
-using Totvs.Olympus.Domain.Services;
 
 namespace Totvs.Olympus.API.Controllers
 {
@@ -16,9 +13,9 @@ namespace Totvs.Olympus.API.Controllers
   [Route("api/v{version:apiVersion}/courses")]
   public class CoursesController : ControllerBase
   {
-    private readonly ICourseMongoService _courseService;
+    private readonly ICourseRepository _courseService;
 
-    public CoursesController(ICourseMongoService courseService)
+    public CoursesController(ICourseRepository courseService)
     {
       _courseService = courseService;
     }

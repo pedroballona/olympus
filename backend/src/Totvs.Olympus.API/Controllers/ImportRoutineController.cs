@@ -20,11 +20,11 @@ namespace Totvs.Olympus.API.Controllers
   [Route("api/v{version:apiVersion}/import/courses")]
   public class ImportRoutineController
   {
-    private readonly ICourseMongoService _courseService;
+    private readonly ICourseRepository _courseService;
     private readonly IGetAllCoursesFromAluraService _getAllService;
     private readonly IGetDetailCoursesService _getDetailCoursesService;
     private readonly IMapper _mapper;
-    public ImportRoutineController(ICourseMongoService courseService, 
+    public ImportRoutineController(ICourseRepository courseService, 
                                    IGetAllCoursesFromAluraService getAllService, 
                                    IGetDetailCoursesService getDetailCoursesService,
                                    IMapper mapper)
