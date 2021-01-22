@@ -61,6 +61,10 @@ namespace Totvs.Olympus.Infrastructure.Services
     {
       var ret = await _collection.FindAsync(x => x.Id == id);
       var result =  await ret.FirstOrDefaultAsync();
+
+      if (result is null)
+        return default(DetailCourseDTO);
+
       return new DetailCourseDTO()
       {
         Title = result.Title,
