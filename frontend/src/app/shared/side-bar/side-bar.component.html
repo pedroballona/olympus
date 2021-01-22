@@ -1,5 +1,6 @@
 <div id="mySidenav" class="sidenav" [@openClose]="sideBarAnimationState$ | async">
   <a [routerLink]="'/'" (click)="toggle()">{{'l-home' | translate}}</a>
   <a [routerLink]="['courses']" (click)="toggle()">{{'l-courses' | translate}}</a>
+  <a [routerLink]="['learning-paths']" (click)="toggle()">{{'l-learning-paths' | translate}}</a>
 </div>
 <div class="overlay" @overlay *ngIf="isOpen$ | async" (click)="toggle()"></div>

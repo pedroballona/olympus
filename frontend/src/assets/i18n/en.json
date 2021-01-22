@@ -10,5 +10,11 @@
   "l-close": "Close",
   "l-instructors": "Instructors",
   "l-no-course-found": "No course found",
-  "l-courses-title-search": "Searching for courses: \"{{filter}}\""
+  "l-learning-paths": "Learning Paths",
+  "l-learning-paths-title": "Learning Paths",
+  "l-no-learning-path-found": "No learning paths found",
+  "l-start-learning-path": "Enroll",
+  "l-courses-title-search": "Searching for courses: \"{{filter}}\"",
+  "l-courses-in-learning-path": "Courses in this learning path",
+  "l-input-learning-path": "Input learning path"
 }

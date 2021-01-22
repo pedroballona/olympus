@@ -52,10 +52,10 @@ namespace Totvs.Olympus.CrossCutting.ExternalServices.ResponsesDTO
     public long QuantidadeAtividades { get; set; }
 
     [JsonProperty("data_criacao")]
-    public DateTime DataCriacao { get; set; }
+    public DateTime? DataCriacao { get; set; }
 
     [JsonProperty("data_atualizacao")]
-    public DateTime DataAtualizacao { get; set; }
+    public DateTime? DataAtualizacao { get; set; }
 
     [JsonProperty("video_1a_aula")]
     public Uri Video1AAula { get; set; }

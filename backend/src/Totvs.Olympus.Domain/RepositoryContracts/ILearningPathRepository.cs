@@ -1,19 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using Totvs.Olympus.CrossCutting.DefaultContract;
 using Totvs.Olympus.CrossCutting.DTOs;
 using Totvs.Olympus.Domain.Entities;
 
-namespace Totvs.Olympus.Domain.Services
+namespace Totvs.Olympus.Domain.RepositoryContracts
 {
-  public interface ILearningPathService
+  public interface ILearningPathRepository
   {
     Task<LearningPath> Insert(LearningPath learningPath);
     Task<LearningPath> Update(Guid Id, LearningPath learningPath);
     Task Delete(Guid Id);
     Task<LearningPath> LoadById(Guid Id);
-    IQueryResult<LearningPathDTO> GetAllPaginated(string filter, RequestAllOptionsDTO optionsDTO);
+    IQueryResult<LearningPath> GetAllPaginated(string filter, RequestAllOptionsDTO optionsDTO);
   }
 }

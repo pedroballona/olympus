@@ -1,9 +1,29 @@
 export interface Courses {
   hasNext: boolean;
-  items: SimpleCourse[]
+  items: SimpleCourse[];
 }
 
-export interface SimpleCourse {
-  id: string; 
+interface SimpleCourse {
+  id?: string;
   title: string;
+}
+
+export interface NewCourse {
+  title: string;
+  score: number;
+  instructors: {
+    name: string;
+    expertise: string[];
+  }[];
+  linkExternalCourse: string;
+  externalId: string;
+  firstClass: string;
+}
+
+export interface CourseDetail {
+  title: string;
+  description: string;
+  score: number;
+  instructors: string[];
+  firstClass: string;
 }

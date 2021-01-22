@@ -8,25 +8,28 @@ using System.Threading.Tasks;
 using Totvs.Olympus.CrossCutting.DefaultContract;
 using Totvs.Olympus.CrossCutting.DTOs;
 using Totvs.Olympus.Domain.Entities;
-using Totvs.Olympus.Domain.Services;
-using Totvs.Olympus.Infrastructure.Adapter;
+using Totvs.Olympus.Domain.Interfaces;
+using Totvs.Olympus.Domain.RepositoryContracts;
 using Totvs.Olympus.Infrastructure.Models;
 
 namespace Totvs.Olympus.Infrastructure.Services
 {
-  public class CourseMongoService : ICourseMongoService
+  public class CourseRepository : ICourseRepository
   {
     private readonly IMongoCollection<Course> _collection;
     private readonly IMapper _mapper;
+    private readonly INotificationContext _notificationContext;
 
-    public CourseMongoService(IOlympusDatabaseSettings settings,
-                              IMapper mapper)
+    public CourseRepository(IOlympusDatabaseSettings settings,
+                            IMapper mapper, 
+                            INotificationContext notificationContext)
     {
       var client = new MongoClient(settings.ConnectionString);
       var database = client.GetDatabase(settings.DatabaseName);
 
       _collection = database.GetCollection<Course>(nameof(Course));
       _mapper = mapper;
+      _notificationContext = notificationContext;
     }
 
     public async Task<Course> CreateCourse(CourseInputDTO course)
@@ -48,13 +51,31 @@ namespace Totvs.Olympus.Infrastructure.Services
       if (!string.IsNullOrEmpty(filter))
         result = result.Where(x => x.Title.ToLower().Contains(filter.ToLower()));
       
-      return await result.Paginate(optionsDTO);
+      var paginated = await result.Paginate(optionsDTO);
+
+      return paginated;
+
+      //_notificationContext.AddNotification("NO_COURSE_FOUND.", "No course was found with this filters.", EStatusCodeNotification.NotFound);
+      //return null;
+    }
+
+    public async Task<Course> GetCourseByExternalId(string externalId)
+    {
+      var result = await _collection.FindAsync(x => x.ExternalId == externalId);
+      return await result.FirstOrDefaultAsync();
     }
 
     public async Task<DetailCourseDTO> GetCourseById(Guid id)
     {
       var ret = await _collection.FindAsync(x => x.Id == id);
       var result =  await ret.FirstOrDefaultAsync();
+
+      if (result is null)
+      {
+        _notificationContext.AddNotification("NO_COURSE_FOUND.", "No course was found with this Id.", EStatusCodeNotification.NotFound);
+        return default(DetailCourseDTO);
+      }
+
       return new DetailCourseDTO()
       {
         Title = result.Title,
@@ -63,6 +84,17 @@ namespace Totvs.Olympus.Infrastructure.Services
         Instructors = result.Instructors.Select(x => x.Name),
         Score = result.Score
       };
+    }
+
+    public async Task<List<CourseDTO>> GetLookupCourses()
+    {
+      var result = _collection.AsQueryable().
+                                Select(x => new CourseDTO()
+                                {
+                                  Id = x.Id,
+                                  Title = x.Title
+                                });
+      return await result.ToListAsync();
     }
   }
 }
