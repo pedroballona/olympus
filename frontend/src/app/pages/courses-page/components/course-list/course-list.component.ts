@@ -24,7 +24,7 @@ export class CourseListComponent {
     this.loaderService.show();
     try {
       const courseDetails = await this.service.getCourse(course.id).toPromise();
-      this.modal.open(courseDetails);
+      this.modal.open(course.id, courseDetails);
     } finally {
       this.loaderService.hide();
     }

@@ -7,7 +7,7 @@
 >
   <h3 class="po-mb-2">{{ "l-instructors" | translate }}</h3>
   <div class="po-mb-2">
-    <div class="instructor" *ngFor="let instructor of course.instructorsNames">
+    <div class="instructor" *ngFor="let instructor of course.instructors">
       <div class="po-pr-1">
         <po-avatar [p-src]="instructor | instructorImage"> </po-avatar>
       </div>

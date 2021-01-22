@@ -6,9 +6,10 @@ export interface SimpleCourse {
 
 export interface Course {
   readonly description:	string;
-  readonly instructorsNames: string[];
+  readonly instructors: string[];
   readonly score: number;
   readonly title: string;
+  readonly firstClass: string;
 }
 
 export interface SimpleCourseWithImage extends SimpleCourse {
