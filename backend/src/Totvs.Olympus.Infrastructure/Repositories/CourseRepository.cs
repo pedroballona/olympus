@@ -2,6 +2,7 @@
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Totvs.Olympus.CrossCutting.DefaultContract;
@@ -83,6 +84,17 @@ namespace Totvs.Olympus.Infrastructure.Services
         Instructors = result.Instructors.Select(x => x.Name),
         Score = result.Score
       };
+    }
+
+    public async Task<List<CourseDTO>> GetLookupCourses()
+    {
+      var result = _collection.AsQueryable().
+                                Select(x => new CourseDTO()
+                                {
+                                  Id = x.Id,
+                                  Title = x.Title
+                                });
+      return await result.ToListAsync();
     }
   }
 }
