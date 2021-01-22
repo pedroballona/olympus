@@ -11,5 +11,6 @@ namespace Totvs.Olympus.Domain.Services
     Task<Course> CreateCourse(CourseInputDTO course);
     Task<IQueryResult<CourseDTO>> GetAllPaginatedCourses(string filter, RequestAllOptionsDTO optionsDTO);
     Task<DetailCourseDTO> GetCourseById(Guid id);
+    Task<Course> GetCourseByExternalId(string externalId);
   }
 }

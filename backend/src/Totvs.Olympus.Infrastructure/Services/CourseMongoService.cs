@@ -51,6 +51,12 @@ namespace Totvs.Olympus.Infrastructure.Services
       return await result.Paginate(optionsDTO);
     }
 
+    public async Task<Course> GetCourseByExternalId(string externalId)
+    {
+      var result = await _collection.FindAsync(x => x.ExternalId == externalId);
+      return await result.FirstOrDefaultAsync();
+    }
+
     public async Task<DetailCourseDTO> GetCourseById(Guid id)
     {
       var ret = await _collection.FindAsync(x => x.Id == id);

@@ -14,13 +14,10 @@ namespace Totvs.Olympus.API.Controllers
   [Route("api/v{version:apiVersion}/courses")]
   public class CoursesController : ControllerBase
   {
-    private readonly ICoursesRepository _repository;
     private readonly ICourseMongoService _courseService;
 
-    public CoursesController(ICoursesRepository repository,
-                             ICourseMongoService courseService)
+    public CoursesController(ICourseMongoService courseService)
     {
-      _repository = repository;
       _courseService = courseService;
     }
 
