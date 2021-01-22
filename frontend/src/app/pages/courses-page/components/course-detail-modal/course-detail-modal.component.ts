@@ -62,7 +62,7 @@ export class CourseDetailModalComponent {
     assert(this.modal);
     this.course = null;
     this.courseId = null;
-    this.close();
+    this.modal.close();
   }
 
   goToLesson(courseId: string): void {

@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Totvs.Olympus.CrossCutting.DefaultContract;
 using Totvs.Olympus.CrossCutting.DTOs;
 using Totvs.Olympus.Domain.Entities;
 using Totvs.Olympus.Domain.RepositoryContracts;
-using Totvs.Olympus.Domain.Services;
 
 namespace Totvs.Olympus.API.Controllers
 {
@@ -14,21 +14,26 @@ namespace Totvs.Olympus.API.Controllers
   [Route("api/v{version:apiVersion}/courses")]
   public class CoursesController : ControllerBase
   {
-    private readonly ICoursesRepository _repository;
-    private readonly ICourseMongoService _courseService;
+    private readonly ICourseRepository _courseRepository;
 
-    public CoursesController(ICoursesRepository repository,
-                             ICourseMongoService courseService)
+    public CoursesController(ICourseRepository courseService)
     {
-      _repository = repository;
-      _courseService = courseService;
+      _courseRepository = courseService;
+    }
+
+    [HttpGet]
+    [MapToApiVersion("1.0")]
+    [Route("lookup")]
+    public async Task<IEnumerable<CourseDTO>> LookupCursos()
+    {
+      return await _courseRepository.GetLookupCourses();
     }
 
     [HttpGet]
     [MapToApiVersion("1.0")]
     public async Task<IQueryResult<CourseDTO>> GetAllCourses([FromQuery] string filter, [FromQuery] RequestAllOptionsDTO optionsDTO)
     {
-      var result = await _courseService.GetAllPaginatedCourses(filter, optionsDTO);
+      var result = await _courseRepository.GetAllPaginatedCourses(filter, optionsDTO);
       return result;
     }
 
@@ -36,7 +41,7 @@ namespace Totvs.Olympus.API.Controllers
     [MapToApiVersion("1.0")]
     public async Task<Course> InputCourse([FromBody] CourseInputDTO course)
     {
-      var result = await _courseService.CreateCourse(course);
+      var result = await _courseRepository.CreateCourse(course);
       return result;
     }
 
@@ -45,7 +50,7 @@ namespace Totvs.Olympus.API.Controllers
     [Route("{id}")]
     public async Task<DetailCourseDTO> GetDetailCourse(Guid id)
     {
-      var result = await _courseService.GetCourseById(id);
+      var result = await _courseRepository.GetCourseById(id);
       return result;
     }
   }

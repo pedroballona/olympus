@@ -4,11 +4,11 @@ export interface Courses {
 }
 
 interface SimpleCourse {
-  id: string;
+  id?: string;
   title: string;
 }
 
-export interface CompleteCourse {
+export interface NewCourse {
   title: string;
   score: number;
   instructors: {
@@ -16,4 +16,14 @@ export interface CompleteCourse {
     expertise: string[];
   }[];
   linkExternalCourse: string;
+  externalId: string;
+  firstClass: string;
+}
+
+export interface CourseDetail {
+  title: string;
+  description: string;
+  score: number;
+  instructors: string[];
+  firstClass: string;
 }
