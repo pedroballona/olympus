@@ -5,7 +5,7 @@ export interface SimpleCourse {
 }
 
 export interface Course {
-  readonly description:	string;
+  readonly description: string;
   readonly instructors: string[];
   readonly score: number;
   readonly title: string;
@@ -16,4 +16,7 @@ export interface SimpleCourseWithImage extends SimpleCourse {
   readonly imageUrl: string;
 }
 
-
+export interface CoursesLookupItem {
+  readonly id: string;
+  readonly title: string;
+}
