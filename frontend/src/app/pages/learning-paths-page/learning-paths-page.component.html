@@ -1,0 +1,9 @@
+<ng-container *ngIf="state$ | async as state">
+  <h1>{{ "l-learning-paths-title" | translate }}</h1>
+
+  <app-learning-path-list
+    [learningPaths]="state.page"
+    [hasNext]="state.hasNext"
+    (nextClicked)="onNextClicked()"
+  ></app-learning-path-list>
+</ng-container>

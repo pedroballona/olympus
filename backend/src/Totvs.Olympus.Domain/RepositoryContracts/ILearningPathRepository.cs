@@ -12,6 +12,6 @@ namespace Totvs.Olympus.Domain.RepositoryContracts
     Task<LearningPath> Update(Guid Id, LearningPath learningPath);
     Task Delete(Guid Id);
     Task<LearningPath> LoadById(Guid Id);
-    IQueryResult<LearningPathDTO> GetAllPaginated(string filter, RequestAllOptionsDTO optionsDTO);
+    IQueryResult<LearningPath> GetAllPaginated(string filter, RequestAllOptionsDTO optionsDTO);
   }
 }

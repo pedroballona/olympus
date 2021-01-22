@@ -1,0 +1,29 @@
+:host ::ng-deep .po-modal-title {
+  white-space: normal !important;
+  overflow: show !important;
+}
+
+.course {
+  display: flex;
+  align-items: center;
+}
+
+.course-name {
+  font-size: 18px;
+}
+
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding-bottom: 2px;
+}
+
+.flex > div {
+  max-width: 256px;
+}
+
+:host ::ng-deep .po-widget {
+  height: 100% !important;
+}
