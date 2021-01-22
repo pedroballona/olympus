@@ -20,8 +20,8 @@ namespace Totvs.Olympus.Infrastructure.Services
     private readonly INotificationContext _notificationContext;
 
     public CourseRepository(IOlympusDatabaseSettings settings,
-                              IMapper mapper, 
-                              INotificationContext notificationContext)
+                            IMapper mapper, 
+                            INotificationContext notificationContext)
     {
       var client = new MongoClient(settings.ConnectionString);
       var database = client.GetDatabase(settings.DatabaseName);
@@ -52,11 +52,10 @@ namespace Totvs.Olympus.Infrastructure.Services
       
       var paginated = await result.Paginate(optionsDTO);
 
-      if (paginated.Items.Any())
-        return paginated;
+      return paginated;
 
-      _notificationContext.AddNotification("NO_COURSE_FOUND.", "No course was found with this filters.", EStatusCodeNotification.NotFound);
-      return null;
+      //_notificationContext.AddNotification("NO_COURSE_FOUND.", "No course was found with this filters.", EStatusCodeNotification.NotFound);
+      //return null;
     }
 
     public async Task<Course> GetCourseByExternalId(string externalId)

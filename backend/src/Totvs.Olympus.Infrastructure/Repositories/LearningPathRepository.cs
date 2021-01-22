@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Totvs.Olympus.CrossCutting.DefaultContract;
 using Totvs.Olympus.CrossCutting.DTOs;
 using Totvs.Olympus.Domain.Entities;
+using Totvs.Olympus.Domain.Interfaces;
 using Totvs.Olympus.Domain.RepositoryContracts;
 using Totvs.Olympus.Infrastructure.Adapter;
 using Totvs.Olympus.Infrastructure.Models;
@@ -17,15 +18,18 @@ namespace Totvs.Olympus.Infrastructure.Services
   {
     private readonly IMongoCollection<LearningPath> _collection;
     private readonly IMapper _mapper;
+    private readonly INotificationContext _notificationContext;
 
     public LearningPathRepository(IOlympusDatabaseSettings settings,
-                               IMapper mapper)
+                                  IMapper mapper,
+                                  INotificationContext notificationContext)
     {
       var client = new MongoClient(settings.ConnectionString);
       var database = client.GetDatabase(settings.DatabaseName);
 
       _collection = database.GetCollection<LearningPath>(nameof(LearningPath));
       _mapper = mapper;
+      _notificationContext = notificationContext;
     }
 
     public async Task<LearningPath> Insert(LearningPath learningPath)
@@ -58,7 +62,15 @@ namespace Totvs.Olympus.Infrastructure.Services
     public async Task<LearningPath> LoadById(Guid Id)
     {
       var ret = await _collection.FindAsync(x => x.Id == Id);
-      return await ret.FirstOrDefaultAsync();
+      var result = await ret.FirstOrDefaultAsync();
+
+      if (result is null)
+      {
+        _notificationContext.AddNotification("NO_LEARNING_PATH_FOUND.", "No Learning Path was found with this Id.", EStatusCodeNotification.NotFound);
+        return null;
+      }
+
+      return result;
     }
 
     public IQueryResult<LearningPathDTO> GetAllPaginated(string filter, RequestAllOptionsDTO optionsDTO)
