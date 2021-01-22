@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Totvs.Olympus.CrossCutting.DefaultContract;
 using Totvs.Olympus.CrossCutting.DTOs;
@@ -12,5 +13,6 @@ namespace Totvs.Olympus.Domain.RepositoryContracts
     Task<IQueryResult<CourseDTO>> GetAllPaginatedCourses(string filter, RequestAllOptionsDTO optionsDTO);
     Task<DetailCourseDTO> GetCourseById(Guid id);
     Task<Course> GetCourseByExternalId(string externalId);
+    Task<List<CourseDTO>> GetLookupCourses();
   }
 }
