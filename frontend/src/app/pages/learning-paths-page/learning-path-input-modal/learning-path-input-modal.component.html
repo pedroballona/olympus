@@ -21,6 +21,7 @@
 
   <po-multiselect
     name="roles"
+    [p-filter-mode]="filterMode"
     [(ngModel)]="model.employeeRoles"
     [p-label]="'l-employee-roles' | translate"
     [p-options]="rolesOptions"
@@ -28,6 +29,7 @@
 
 <po-multiselect
   name="courses"
+  [p-filter-mode]="filterMode"
   [(ngModel)]="model.courses"
   [p-label]="'l-courses-in-learning-path' | translate"
   [p-options]="courses$ | async"

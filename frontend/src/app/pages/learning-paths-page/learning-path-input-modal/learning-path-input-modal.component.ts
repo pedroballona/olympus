@@ -10,6 +10,7 @@ import { TranslateService } from "@ngx-translate/core";
 import {
   PoModalAction,
   PoModalComponent,
+  PoMultiselectFilterMode,
   PoMultiselectOption,
 } from "@po-ui/ng-components";
 import { Observable } from "rxjs";
@@ -72,6 +73,7 @@ export class LearningPathInputModalComponent implements OnInit {
 
   rolesOptions: PoMultiselectOption[];
   coursesOptions: PoMultiselectOption[];
+  filterMode: PoMultiselectFilterMode = 1;
 
   @Output() saved = new EventEmitter();
 
