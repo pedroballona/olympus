@@ -2,7 +2,12 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable, Subject } from 'rxjs';
-import { distinctUntilChanged, map, switchMap, takeUntil } from 'rxjs/operators';
+import {
+  distinctUntilChanged,
+  map,
+  switchMap,
+  takeUntil
+} from 'rxjs/operators';
 import { LoaderService } from '../../shared/totvs-loader/loader/loader.service';
 import { CoursesPageStateService } from './couses-page-state.service';
 
@@ -20,13 +25,16 @@ export class CoursesPageComponent implements OnInit, OnDestroy {
     map((params) => params.filter ?? ''),
     distinctUntilChanged()
   );
-  title$ = this.filter$.pipe(switchMap(filter => {
-    if (filter === '') {
-      return this.translateService.get('l-courses') as Observable<string>;
-    } else {
-      return this.translateService.get('l-courses-title-search', {filter});
-    }
-  }));
+  isFiltered$ = this.filter$.pipe(map(filter => filter !== ''));
+  title$ = this.filter$.pipe(
+    switchMap((filter) => {
+      if (filter === '') {
+        return this.translateService.get('l-courses') as Observable<string>;
+      } else {
+        return this.translateService.get('l-courses-title-search', { filter });
+      }
+    })
+  );
 
   constructor(
     private stateService: CoursesPageStateService,

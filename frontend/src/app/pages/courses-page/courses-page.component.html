@@ -1,5 +1,9 @@
 <ng-container *ngIf="state$ | async as state">
-  <h1>{{ title$ | async }}</h1>
+  <div class="app-flex">
+    <div *ngIf="isFiltered$ | async" class="fas fa-arrow-left po-mr-1 app-clickable" [routerLink]="'/courses'"></div>
+    <h1>{{ title$ | async }}</h1>
+  </div>
+ 
 
   <app-course-list
     [courses]="state.page"

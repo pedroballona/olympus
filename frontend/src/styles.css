@@ -13,6 +13,11 @@
   position: relative;
 }
 
+.app-flex {
+  display: flex;
+  align-items: center;
+}
+
 .app-clickable {
   transition: 100ms filter linear;
   cursor: pointer;

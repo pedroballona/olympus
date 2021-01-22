@@ -1,0 +1,8 @@
+<ng-container *ngIf="state$ | async as state">
+  <ng-container *ngIf="state.course">
+    <div class="app-flex">
+      <div class="fas fa-arrow-left po-mr-1 app-clickable" (click)="goBack()"></div>
+      <h1>{{ state.course?.title }}</h1>
+    </div>
+  </ng-container>
+</ng-container>
