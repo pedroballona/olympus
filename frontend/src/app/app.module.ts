@@ -12,6 +12,7 @@ import { CourseListComponent } from './pages/courses-page/components/course-list
 import { CoursesPageComponent } from './pages/courses-page/courses-page.component';
 import { SharedModule } from './shared/shared.module';
 import { AppTranslationLoader } from './shared/translation-loader/translation-loader';
+import { LessonPageComponent } from './pages/lesson-page/lesson-page.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { AppTranslationLoader } from './shared/translation-loader/translation-lo
     CoursesPageComponent,
     CourseCardComponent,
     CourseListComponent,
-    CourseDetailModalComponent
+    CourseDetailModalComponent,
+    LessonPageComponent
   ],
   imports: [
     BrowserModule,

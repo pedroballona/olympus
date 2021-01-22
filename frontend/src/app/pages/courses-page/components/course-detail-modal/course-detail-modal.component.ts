@@ -1,4 +1,5 @@
-import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { PoModalAction, PoModalComponent } from '@po-ui/ng-components';
 import { Observable } from 'rxjs';
@@ -11,15 +12,19 @@ import { assert } from '../../../../shared/assert';
   templateUrl: './course-detail-modal.component.html',
   styleUrls: ['./course-detail-modal.component.css'],
 })
-export class CourseDetailModalComponent implements OnInit {
+export class CourseDetailModalComponent {
   course: Course | null = null;
+  courseId: string | null = null;
+
   primaryAction$: Observable<PoModalAction> = this.translateService
     .get('l-start-course')
     .pipe(
       map((label) => {
         const action: PoModalAction = {
           label,
-          action: () => {}
+          action: () => {
+            this.goToLesson(this.courseId);
+          }
         };
         return action;
       })
@@ -41,13 +46,13 @@ export class CourseDetailModalComponent implements OnInit {
 
   constructor(
     private changeDetectorRef: ChangeDetectorRef,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    private router: Router
   ) {}
 
-  ngOnInit(): void {}
-
-  open(course: Course): void {
+  open(courseId: string, course: Course): void {
     this.course = course;
+    this.courseId = courseId;
     this.changeDetectorRef.detectChanges();
     assert(this.modal);
     this.modal.open();
@@ -56,6 +61,11 @@ export class CourseDetailModalComponent implements OnInit {
   close(): void {
     assert(this.modal);
     this.course = null;
+    this.courseId = null;
     this.close();
+  }
+
+  goToLesson(courseId: string): void {
+    this.router.navigate(['lesson', courseId]);
   }
 }

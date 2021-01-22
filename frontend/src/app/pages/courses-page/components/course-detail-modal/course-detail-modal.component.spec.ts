@@ -1,25 +1,20 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { TranslateService } from '@ngx-translate/core';
+import { Observable, of } from 'rxjs';
 import { CourseDetailModalComponent } from './course-detail-modal.component';
+
+
+class TranslateServiceMock {
+  get(key: string): Observable<string> {
+    return of(key);
+  }
+}
 
 describe('CourseDetailModalComponent', () => {
   let component: CourseDetailModalComponent;
-  let fixture: ComponentFixture<CourseDetailModalComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ CourseDetailModalComponent ]
-    })
-    .compileComponents();
-  });
+  let translateService: jasmine.SpyObj<TranslateService>;
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CourseDetailModalComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
+    translateService = jasmine.createSpyObj('teste', ['get']);
+    translateService.get.and.callFake(key => of(key));
   });
 });

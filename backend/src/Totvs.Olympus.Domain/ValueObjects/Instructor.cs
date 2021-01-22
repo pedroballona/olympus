@@ -5,9 +5,9 @@ namespace Totvs.Olympus.Domain.ValueObjects
 {
   public class Instructor
   {
-    public Guid Id { get; private set; }
-    public string Name { get; private set; }
-    public IList<string> Expertise { get; private set; }
+    public Guid Id { get; set; }
+    public string Name { get; set; }
+    public IList<string> Expertise { get; set; }
 
     public Instructor(string name)
     {

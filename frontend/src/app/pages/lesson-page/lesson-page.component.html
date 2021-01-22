@@ -1,0 +1,20 @@
+<ng-container *ngIf="state$ | async as state">
+  <ng-container *ngIf="state.course">
+    <div class="app-flex">
+      <div
+        class="fas fa-arrow-left po-mr-1 app-clickable"
+        (click)="goBack()"
+      ></div>
+      <h1>{{ state.course?.title }}</h1>
+    </div>
+    <video
+      [src]="
+        !state.course?.firstClass
+          ? 'https://video.alura.com.br/alura/243322571-sd.mp4?cdn_hash=a36443df7c586137de9e0611eae919d7'
+          : state.course?.firstClass
+      "
+      width="100%"
+      controls
+    ></video>
+  </ng-container>
+</ng-container>

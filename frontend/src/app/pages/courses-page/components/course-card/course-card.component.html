@@ -1,6 +1,7 @@
 <po-widget
   *ngIf="course$ | async as course"
   [p-primary-label]="'l-start-course' | translate"
+  (p-primary-action)="goToLesson(course.id)"
   [p-secondary-label]="'l-details' | translate"
   (p-secondary-action)="detailsClicked.emit()"
 >
@@ -15,13 +16,14 @@
         class="overlay"
         (mouseenter)="setMouseOverImage(true)"
         (mouseleave)="setMouseOverImage(false)"
-      >        
-      </div>
+        (click)="goToLesson(course.id)"
+      ></div>
     </div>
     <a
       class="title app-clickable"
       (mouseenter)="setMouseOverImage(true)"
       (mouseleave)="setMouseOverImage(false)"
+      (click)="goToLesson(course.id)"
       >{{ course.title }}</a
     >
   </div>

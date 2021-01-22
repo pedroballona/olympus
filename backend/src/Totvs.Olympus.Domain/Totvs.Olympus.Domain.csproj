@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="9.4.0" />
+    <PackageReference Include="MongoDB.Bson" Version="2.11.6" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Totvs.Olympus.CrossCutting\Totvs.Olympus.CrossCutting.csproj" />
   </ItemGroup>
 
