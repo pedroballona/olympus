@@ -2,3 +2,7 @@ cypress/integration/examples/
 node_modules
 cypress/videos
 cypress/screenshots
+cypress/results
+mochawesome-report/
+mochawesome-report.html
+mochawesome.json

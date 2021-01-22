@@ -3,7 +3,7 @@ import * as interfaces from '../../support/API/interfaces/courses';
 
 const coursesController = new CoursesController();
 
-describe('Listagem dos cursos', () => {
+describe('(API) Listagem dos cursos', () => {
   it('GetAll - Retorna todos os cursos sem filtro', () => {
     const expectedList = [
       {
