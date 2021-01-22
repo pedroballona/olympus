@@ -1,13 +1,11 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  Output
-} from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, ReplaySubject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { SimpleCourse, SimpleCourseWithImage } from '../../../../models/course.model';
+import {
+  SimpleCourse,
+  SimpleCourseWithImage
+} from '../../../../models/course.model';
 import { CourseImageService } from './course-image.service';
 
 @Component({
@@ -35,9 +33,16 @@ export class CourseCardComponent {
     })
   );
 
-  constructor(private courseImageService: CourseImageService, private activatedRouter: ActivatedRoute) {}
+  constructor(
+    private courseImageService: CourseImageService,
+    private router: Router
+  ) {}
 
   setMouseOverImage(value: boolean): void {
     this.mouseOverImage = value;
+  }
+
+  goToLesson(courseId: string): void {
+    this.router.navigate(['lesson', courseId]);
   }
 }

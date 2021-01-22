@@ -1,0 +1,19 @@
+<po-modal
+  *ngIf="learningPath"
+  [p-title]="learningPath.name"
+  [p-size]="'lg'"
+  [p-primary-action]="primaryAction$ | async"
+  [p-secondary-action]="secondaryAction$ | async"
+>
+<h3 class="po-mb-2">{{ "l-courses-in-learning-path" | translate }}</h3>
+<div class="flex">
+  <div *ngFor="let course of courses">
+    <po-widget
+      [p-title]="course.title"
+    >
+      <img [src]="course.title | courseImage" />
+    </po-widget>
+  </div>
+</div>
+  
+</po-modal>

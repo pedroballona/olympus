@@ -29,6 +29,7 @@ namespace Totvs.Olympus.API
     public void ConfigureServices(IServiceCollection services)
     {
       services.AddMvcCore(options => options.EnableEndpointRouting = true);
+      services.AddMvcCore(options => options.Filters.Add<NotificationFilterSetup>());
 
       services.AddControllers();
       services.AddApiVersioning();

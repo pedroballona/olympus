@@ -15,11 +15,11 @@ export class CoursesController {
 
   getOneCourseDetail(courseId: string) {
     return cy.request('GET', this.courses + `/${courseId}`).then((response) => {
-      return response.body as interfaces.CompleteCourse;
+      return response.body as interfaces.CourseDetail;
     });
   }
 
-  putCourses(course: interfaces.CompleteCourse): void {
+  putCourses(course: interfaces.NewCourse): void {
     cy.request('POST', this.courses, course).then((res) => {
       console.log(res.body);
     });

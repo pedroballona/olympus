@@ -7,25 +7,29 @@ using System.Threading.Tasks;
 using Totvs.Olympus.CrossCutting.DefaultContract;
 using Totvs.Olympus.CrossCutting.DTOs;
 using Totvs.Olympus.Domain.Entities;
-using Totvs.Olympus.Domain.Services;
+using Totvs.Olympus.Domain.Interfaces;
+using Totvs.Olympus.Domain.RepositoryContracts;
 using Totvs.Olympus.Infrastructure.Adapter;
 using Totvs.Olympus.Infrastructure.Models;
 
 namespace Totvs.Olympus.Infrastructure.Services
 {
-  public class LearningPathService : ILearningPathService
+  public class LearningPathRepository : ILearningPathRepository
   {
     private readonly IMongoCollection<LearningPath> _collection;
     private readonly IMapper _mapper;
+    private readonly INotificationContext _notificationContext;
 
-    public LearningPathService(IOlympusDatabaseSettings settings,
-                               IMapper mapper)
+    public LearningPathRepository(IOlympusDatabaseSettings settings,
+                                  IMapper mapper,
+                                  INotificationContext notificationContext)
     {
       var client = new MongoClient(settings.ConnectionString);
       var database = client.GetDatabase(settings.DatabaseName);
 
       _collection = database.GetCollection<LearningPath>(nameof(LearningPath));
       _mapper = mapper;
+      _notificationContext = notificationContext;
     }
 
     public async Task<LearningPath> Insert(LearningPath learningPath)
@@ -58,18 +62,25 @@ namespace Totvs.Olympus.Infrastructure.Services
     public async Task<LearningPath> LoadById(Guid Id)
     {
       var ret = await _collection.FindAsync(x => x.Id == Id);
-      return await ret.FirstOrDefaultAsync();
+      var result = await ret.FirstOrDefaultAsync();
+
+      if (result is null)
+      {
+        _notificationContext.AddNotification("NO_LEARNING_PATH_FOUND.", "No Learning Path was found with this Id.", EStatusCodeNotification.NotFound);
+        return null;
+      }
+
+      return result;
     }
 
-    public IQueryResult<LearningPathDTO> GetAllPaginated(string filter, RequestAllOptionsDTO optionsDTO)
+    public IQueryResult<LearningPath> GetAllPaginated(string filter, RequestAllOptionsDTO optionsDTO)
     {
       var result = _collection.AsQueryable();
 
       if (!string.IsNullOrEmpty(filter))
         result = result.Where(x => x.Name.ToLower().Contains(filter.ToLower()));
 
-      var mapped = _mapper.Map<IEnumerable<LearningPathDTO>>(result);
-      return AutoMapperQueryble.Paginate(mapped, optionsDTO);
+      return AutoMapperQueryble.Paginate(result, optionsDTO);
     }
   }
 }

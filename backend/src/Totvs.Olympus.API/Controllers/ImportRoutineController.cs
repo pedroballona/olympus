@@ -2,16 +2,12 @@
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
-using Totvs.Olympus.CrossCutting.DefaultContract;
 using Totvs.Olympus.CrossCutting.DTOs;
 using Totvs.Olympus.CrossCutting.ExternalServices.Enum;
-using Totvs.Olympus.Domain.Entities;
 using Totvs.Olympus.Domain.ExternalServices;
 using Totvs.Olympus.Domain.RepositoryContracts;
-using Totvs.Olympus.Domain.Services;
 
 namespace Totvs.Olympus.API.Controllers
 {
@@ -20,11 +16,11 @@ namespace Totvs.Olympus.API.Controllers
   [Route("api/v{version:apiVersion}/import/courses")]
   public class ImportRoutineController
   {
-    private readonly ICourseMongoService _courseService;
+    private readonly ICourseRepository _courseService;
     private readonly IGetAllCoursesFromAluraService _getAllService;
     private readonly IGetDetailCoursesService _getDetailCoursesService;
     private readonly IMapper _mapper;
-    public ImportRoutineController(ICourseMongoService courseService, 
+    public ImportRoutineController(ICourseRepository courseService, 
                                    IGetAllCoursesFromAluraService getAllService, 
                                    IGetDetailCoursesService getDetailCoursesService,
                                    IMapper mapper)
@@ -41,13 +37,25 @@ namespace Totvs.Olympus.API.Controllers
     [Route("{clientNames}")]
     public async Task ImportDataToOlympus(EHttpClientNames clientNames)
     {
+      switch (clientNames)
+      {
+        case EHttpClientNames.Alura:
+          await ImportAluraData();
+          return;
+        default:
+          return;
+      }
+    }
+
+    private async Task ImportAluraData()
+    {
       var courses = await _getAllService.GetCourses();
 
       foreach (var item in courses)
       {
-        var detailCourse = await _getDetailCoursesService.GetDetailCourseData(item.Slug);
         try
         {
+          var detailCourse = await _getDetailCoursesService.GetDetailCourseData(item.Slug);
           var courseInputDto = new CourseInputDTO()
           {
             ExternalId = item.Slug,
@@ -57,16 +65,15 @@ namespace Totvs.Olympus.API.Controllers
             Score = detailCourse.Nota,
             Instructors = detailCourse.Instrutores.Select(i => new InstructorDTO() { Name = i.Nome, Expertise = new List<string>() })
           };
-          await _courseService.CreateCourse(courseInputDto);
+
+          if (await _courseService.GetCourseByExternalId(item.Slug) is null)
+            await _courseService.CreateCourse(courseInputDto);
         }
         catch (Exception e)
         {
 
         }
       }
-
-      return;
     }
-
   }
 }
