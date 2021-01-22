@@ -49,9 +49,7 @@ Then('um modal é aberto com as informações do curso {string}', (courseName) =
     title: replace(courseName),
     instructor: 'Rafael Balbi',
     description:
-      'Entenda como integrar os tipos em sua logo\r. Saiba como escolher a sua família tipográfica ' +
-      'de acordo com o briefing do seu cliente\r. Trabalhe no Illustrator para editar a sua tipografia\r. ' +
-      'Entenda o conceito por trás do simbolismo sonoro\r. Saiba realizar uma análise caligráfica',
+      'Adobe Illustrator: Trabalhando com edição tipográfica',
   };
   courses.getCourseTitleFromModal().then((title) => {
     expect(title.trim()).to.equal(course.title);
