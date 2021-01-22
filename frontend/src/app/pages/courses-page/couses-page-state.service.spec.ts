@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
+import { CoursesPageStateService } from './couses-page-state.service';
 
-import { CousesPageStateService } from './couses-page-state.service';
 
-describe('CousesPageStateService', () => {
-  let service: CousesPageStateService;
+describe('CoursesPageStateService', () => {
+  let service: CoursesPageStateService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(CousesPageStateService);
+    service = TestBed.inject(CoursesPageStateService);
   });
 
   it('should be created', () => {
