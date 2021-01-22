@@ -11,6 +11,6 @@ Funcionalidade: Home Page
     E o campo de busca é disponibilizado
 
   Cenario: Busca simples por treinamento
-    Quando digito o termo "<covid>" termo na Busca
+    Quando digito o termo "<ABAP parte 3:>" termo na Busca
     E clico em pesquisar
-    Entao o treinamento "Análise de série temporal: COVID-19" é exibido
+    Entao o treinamento "ABAP parte 3: Persistindo dados" é exibido
