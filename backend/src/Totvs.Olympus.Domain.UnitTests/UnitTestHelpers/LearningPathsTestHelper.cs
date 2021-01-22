@@ -18,9 +18,25 @@ namespace Totvs.Olympus.Domain.UnitTests.UnitTestHelpers
       };
     }
 
+    public static LearningPathDTO GetInvalidLearningPathDTO()
+    {
+      return new LearningPathDTO()
+      {
+        Name = string.Empty,
+        Description = string.Empty,
+        Courses = null,
+        EmployeeRoles = null
+      };
+    }
+
     public static LearningPath GetValidLearningPath()
     {
       return new LearningPath(GetValidLearningPathDTO());
+    }
+
+    public static LearningPath GetInvalidLearningPath()
+    {
+      return new LearningPath(GetInvalidLearningPathDTO());
     }
   }
 }

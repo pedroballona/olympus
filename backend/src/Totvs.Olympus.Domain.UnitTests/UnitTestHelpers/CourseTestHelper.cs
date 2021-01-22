@@ -12,5 +12,12 @@ namespace Totvs.Olympus.Domain.UnitTests.UnitTestHelpers
                         instructors: GetValidInstructorsList());
     }
 
+    public static Course GetInvalidCourse() 
+    {
+      return new Course(title: string.Empty,
+                        note: -1,
+                        instructors: null);
+    }
+
   }
 }

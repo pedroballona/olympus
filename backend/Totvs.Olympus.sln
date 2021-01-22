@@ -12,9 +12,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Totvs.Olympus.Domain", "src
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{2F4436A5-31B1-496C-A7DA-C71E929CBC1F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Totvs.Olympus.Domain.UnitTests", "src\Totvs.Olympus.Domain.UnitTests\Totvs.Olympus.Domain.UnitTests.csproj", "{E434522F-34B8-4454-8E1E-5644FD9E5D17}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Totvs.Olympus.Domain.UnitTests", "src\Totvs.Olympus.Domain.UnitTests\Totvs.Olympus.Domain.UnitTests.csproj", "{E434522F-34B8-4454-8E1E-5644FD9E5D17}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Totvs.Olympus.CrossCutting", "src\Totvs.Olympus.CrossCutting\Totvs.Olympus.CrossCutting.csproj", "{09AB8377-57D4-4B9A-9A1C-18ADE5345F89}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Totvs.Olympus.CrossCutting", "src\Totvs.Olympus.CrossCutting\Totvs.Olympus.CrossCutting.csproj", "{09AB8377-57D4-4B9A-9A1C-18ADE5345F89}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Totvs.Olympus.Infrastructure.UnitTests", "src\Totvs.Olympus.Infrastructure.UnitTests\Totvs.Olympus.Infrastructure.UnitTests.csproj", "{9859C81B-8D5C-4B4E-BB88-AA552736054A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -86,6 +88,18 @@ Global
 		{09AB8377-57D4-4B9A-9A1C-18ADE5345F89}.Release|x64.Build.0 = Release|Any CPU
 		{09AB8377-57D4-4B9A-9A1C-18ADE5345F89}.Release|x86.ActiveCfg = Release|Any CPU
 		{09AB8377-57D4-4B9A-9A1C-18ADE5345F89}.Release|x86.Build.0 = Release|Any CPU
+		{9859C81B-8D5C-4B4E-BB88-AA552736054A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9859C81B-8D5C-4B4E-BB88-AA552736054A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9859C81B-8D5C-4B4E-BB88-AA552736054A}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{9859C81B-8D5C-4B4E-BB88-AA552736054A}.Debug|x64.Build.0 = Debug|Any CPU
+		{9859C81B-8D5C-4B4E-BB88-AA552736054A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9859C81B-8D5C-4B4E-BB88-AA552736054A}.Debug|x86.Build.0 = Debug|Any CPU
+		{9859C81B-8D5C-4B4E-BB88-AA552736054A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9859C81B-8D5C-4B4E-BB88-AA552736054A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9859C81B-8D5C-4B4E-BB88-AA552736054A}.Release|x64.ActiveCfg = Release|Any CPU
+		{9859C81B-8D5C-4B4E-BB88-AA552736054A}.Release|x64.Build.0 = Release|Any CPU
+		{9859C81B-8D5C-4B4E-BB88-AA552736054A}.Release|x86.ActiveCfg = Release|Any CPU
+		{9859C81B-8D5C-4B4E-BB88-AA552736054A}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -96,6 +110,7 @@ Global
 		{599FACEA-5143-49EC-AC24-461BBB7D1A87} = {88B1B875-6F50-48E2-9DBB-D181DFB6D55C}
 		{E434522F-34B8-4454-8E1E-5644FD9E5D17} = {2F4436A5-31B1-496C-A7DA-C71E929CBC1F}
 		{09AB8377-57D4-4B9A-9A1C-18ADE5345F89} = {88B1B875-6F50-48E2-9DBB-D181DFB6D55C}
+		{9859C81B-8D5C-4B4E-BB88-AA552736054A} = {2F4436A5-31B1-496C-A7DA-C71E929CBC1F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B44B9C7E-0DE8-4291-9308-5C572BF8F5B8}

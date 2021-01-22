@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Totvs.Olympus.CrossCutting.DTOs;
 using Totvs.Olympus.CrossCutting.Enums;
+using Totvs.Olympus.Domain.Validations;
 
 namespace Totvs.Olympus.Domain.Entities
 {
@@ -18,6 +19,12 @@ namespace Totvs.Olympus.Domain.Entities
       Description = learningPathDTO.Description;
       Courses = learningPathDTO.Courses;
       EmployeeRoles = learningPathDTO.EmployeeRoles;
+      Validate();
+    }
+
+    public void Validate()
+    {
+      Validate(this, new LearningPathValidator());
     }
   }
 }
