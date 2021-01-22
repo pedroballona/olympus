@@ -1,11 +1,8 @@
-import {
-  Component,
-  OnDestroy,
-  OnInit
-} from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Subject } from 'rxjs';
-import { distinctUntilChanged, map, takeUntil } from 'rxjs/operators';
+import { TranslateService } from '@ngx-translate/core';
+import { Observable, Subject } from 'rxjs';
+import { distinctUntilChanged, map, switchMap, takeUntil } from 'rxjs/operators';
 import { LoaderService } from '../../shared/totvs-loader/loader/loader.service';
 import { CoursesPageStateService } from './couses-page-state.service';
 
@@ -18,17 +15,29 @@ import { CoursesPageStateService } from './couses-page-state.service';
 export class CoursesPageComponent implements OnInit, OnDestroy {
   state$ = this.stateService.state$;
   private destroySubject = new Subject<void>();
+  filter$ = this.activatedRoute.queryParams.pipe(
+    takeUntil(this.destroySubject),
+    map((params) => params.filter ?? ''),
+    distinctUntilChanged()
+  );
+  title$ = this.filter$.pipe(switchMap(filter => {
+    if (filter === '') {
+      return this.translateService.get('l-courses') as Observable<string>;
+    } else {
+      return this.translateService.get('l-courses-title-search', {filter});
+    }
+  }));
 
   constructor(
     private stateService: CoursesPageStateService,
     private loaderService: LoaderService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private translateService: TranslateService
   ) {}
 
   async ngOnInit(): Promise<void> {
     this.activateLoader();
-    this.activatedRoute.queryParams.pipe(takeUntil(this.destroySubject)).subscribe(async params => {
-      const filter: string = params.filter ?? '';
+    this.filter$.subscribe(async (filter) => {
       await this.stateService.initialize(filter);
     });
   }

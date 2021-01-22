@@ -9,5 +9,6 @@
   "l-details": "Details",
   "l-close": "Close",
   "l-instructors": "Instructors",
-  "l-no-course-found": "No course found"
+  "l-no-course-found": "No course found",
+  "l-courses-title-search": "Searching for courses: \"{{filter}}\""
 }
