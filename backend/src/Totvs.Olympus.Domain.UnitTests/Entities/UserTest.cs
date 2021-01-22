@@ -50,9 +50,9 @@ namespace Totvs.Olympus.Domain.UnitTests.Entities
       var user = GetValidUser();
       var newCourse = GetValidCourse();
 
-      user.AddNewCourse(newCourse);
+      user.AddNewCourse(newCourse.Id);
 
-      Assert.Contains(newCourse, user.Courses);
+      Assert.Contains(newCourse.Id, user.Courses);
     }
 
     [Fact]
@@ -61,9 +61,9 @@ namespace Totvs.Olympus.Domain.UnitTests.Entities
       var user = GetValidUser();
       var newLearningPath = GetValidLearningPath();
 
-      user.AddNewLearningPath(newLearningPath);
+      user.AddNewLearningPath(newLearningPath.Id);
 
-      Assert.Contains(newLearningPath, user.LearningPaths);
+      Assert.Contains(newLearningPath.Id, user.LearningPaths);
     }
   }
 }

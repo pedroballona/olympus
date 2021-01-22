@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using Totvs.Olympus.Domain.Validations;
 
 namespace Totvs.Olympus.Domain.Entities
@@ -10,29 +9,29 @@ namespace Totvs.Olympus.Domain.Entities
     public string Name { get; private set; }
     public string Email { get; private set; }
     public Uri Image { get; private set; }
-    public IList<Course> Courses { get; private set; }
-    public IList<LearningPath> LearningPaths { get; private set; }
+    public IList<Guid> Courses { get; private set; }
+    public IList<Guid> LearningPaths { get; private set; }
 
     public User(string name, 
                 string email,
-                Uri image)
+                Uri image = null)
     {
       Name = name;
       Email = email;
       Image = image;
-      Courses = new List<Course>();
-      LearningPaths = new List<LearningPath>();
+      Courses = new List<Guid>();
+      LearningPaths = new List<Guid>();
       Validate();
     }
 
-    public void AddNewCourse(Course newCourse)
+    public void AddNewCourse(Guid newCourseId)
     {
-      Courses.Add(newCourse);
+      Courses.Add(newCourseId);
     }
 
-    public void AddNewLearningPath(LearningPath newLearningPath)
+    public void AddNewLearningPath(Guid newLearningPathId)
     {
-      LearningPaths.Add(newLearningPath);
+      LearningPaths.Add(newLearningPathId);
     }
 
     public void Validate()
