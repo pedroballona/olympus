@@ -2,9 +2,9 @@ name: .NET
 
 on:
   push:
-    paths: 
-      - "backend/"
-      - ".github/workflows/dotnet.yaml"
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   build:
